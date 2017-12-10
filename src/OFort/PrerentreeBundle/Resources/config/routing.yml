@@ -1,0 +1,155 @@
+o_fort_prerentree_homepage:
+    path:     /
+    defaults: { _controller: OFortPrerentreeBundle:Default:index }
+
+o_fort_prerentree_structure:
+    path:     /structure
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:index
+
+o_fort_prerentree_struct_add:
+    path:     /structure/add
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:add
+
+o_fort_prerentree_struct_modify:
+    path:     /structure/modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:modify
+
+o_fort_prerentree_struct:
+    path:     /structure/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:view
+
+o_fort_prerentree_struct_del:
+    path:     /structure/del/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:del
+
+o_fort_prerentree_struct_confirmdel:
+    path:     /structure/confirmdel/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:confirmDel
+
+o_fort_prerentree_filiere_add:
+    path:     /filiere/add/{idStructure}
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:add
+
+o_fort_prerentree_filiere_view:
+    path:     /filiere/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:view
+
+o_fort_prerentree_filiere:
+    path:     /filiere
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:index
+
+o_fort_prerentree_filiere_modify:
+    path:     /filiere/modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:modify
+
+o_fort_prerentree_filiere_del:
+    path:  /filiere/del/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:del
+
+o_fort_prerentree_filiere_confirmDel:
+    path:  /filiere/confirmDel/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:confirmDel
+ 
+o_fort_prerentree_niveau_add:
+    path:    /niveau/add/{idFiliere}
+    defaults:
+        _controller: OFortPrerentreeBundle:Niveaux:add
+
+o_fort_prerentree_niveau_view:
+    path:   /niveau/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Niveaux:view
+
+o_fort_prerentree_niveau_modify:
+    path:   /niveau/modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Niveaux:modify
+
+o_fort_prerentree_maquette_add:
+    path:   /maquette/add
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:add
+
+o_fort_prerentree_maquette_view:
+    path:  /maquette/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:view
+
+o_fort_prerentree_maquette:
+    path:  /maquette
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:index
+
+o_fort_prerentree_maquette_modify:
+    path:  /maquette/modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:modify
+
+o_fort_prerentree_maquette_del:
+    path:  /maquette/del/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:del
+
+o_fort_prerentree_maquette_confirmDel:
+    path:  /maquette/confirmDel/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:confirmDel
+                
+o_fort_prerentree_enseignement_add:
+    path:   /enseignement/add/{idMaquette}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:add
+
+o_fort_prerentree_enseignement_view:
+    path:  /enseignement/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:view
+
+o_fort_prerentree_enseignement_modify:
+    path:  /enseignement/modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:modify
+
+o_fort_prerentree_division_add:
+    path:   /division/add/{idNiveau}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:addForLevel
+
+o_fort_prerentree_division_view:
+    path:   /division/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:view
+
+o_fort_prerentree_division_del:
+    path:  /division/del/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:del
+
+o_fort_prerentree_division_confirmDel:
+    path:  /division/confirmDel/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:confirmDel
+
+o_fort_prerentree_division_modify:
+    path:  /division/modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:modify
+
+o_fort_prerentree_repartition_add:
+    path: /repartition/add/{divisionId}
+    defaults:
+        _controller: OFortPrerentreeBundle:Repartition:add
+
+ 

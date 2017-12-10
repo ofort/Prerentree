@@ -1,0 +1,4 @@
+services:
+#    o_fort_core.example:
+#        class: OFort\CoreBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

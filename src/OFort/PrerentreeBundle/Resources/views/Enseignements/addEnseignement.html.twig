@@ -1,0 +1,14 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Ajouter un enseignement - 
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  <h4>Ajouter un enseignement</h4>
+
+  {{ include("OFortPrerentreeBundle:Enseignements:formEnseignement.html.twig") }}
+
+{% endblock %}

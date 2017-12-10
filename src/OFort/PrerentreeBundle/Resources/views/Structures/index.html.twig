@@ -1,0 +1,31 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Liste des structures - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+    <h2>Liste des structures</h2>
+    <table class="table table-striped">
+    	<tr>
+    		<td>N°</td>
+            <td></td>
+    		<td>Nom de la structure</td>
+    		<td>Rentrée</td>
+    	</tr>
+    	{% for st in struct %}
+    		<tr>
+    			<td>{{ loop.index }}</td>
+                <td><a href="{{ path('o_fort_prerentree_struct_del', {'id': st.id}) }}"><i class="material-icons">delete</i></a></td>
+    			<td><a href="{{ path('o_fort_prerentree_struct', {'id': st.id}) }}">{{ st.nom }}</a>
+    			</td>
+    			<td>{{ st.rentree }}</td>
+    		</tr>
+    	{% endfor %}
+    </table>
+
+    <a href="{{ path('o_fort_prerentree_struct_add') }}">Ajouter une structure</a>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter une filiere - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+
+  <p>Ajouter un niveau à la filière </p>
+
+  {{ include("OFortPrerentreeBundle:Niveaux:formNiveau.html.twig") }}
+
+
+{% endblock %}

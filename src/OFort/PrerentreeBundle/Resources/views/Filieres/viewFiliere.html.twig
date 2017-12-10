@@ -1,0 +1,53 @@
+{% extends "OFortPrerentreeBundle::layout.html.twig" %} {% block title %} Liste des structures - {{ parent() }} {% endblock %} {% block ofortprerentree_body %}
+<h2>Vue de la filiere {{filiere.id}} (Id = {{filiere.id|e}}): <br> {{filiere.nom|e}}({{filiere.nomCourt|e}})</h2>
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="alert alert-success" role="alert">
+			<a href="{{ path('o_fort_prerentree_filiere_modify', {'id':filiere.id}) }}">Modifier</a>
+		</div>
+	</div>
+</div>
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+
+    <li class="breadcrumb-item">
+    	<a href="{{ path('o_fort_prerentree_struct', {'id':filiere.idStructure.id}) }}">
+    		{{ filiere.idStructure.nom}}
+    	</a>
+    </li>
+
+    <li class="breadcrumb-item">{{ filiere.nom}}</li>
+  </ol>
+</nav>
+<h4>Détail</h4>
+
+
+<div>
+	<h4>Niveaux</h4>
+	<table class="table table-striped">
+		<tbody>
+		{% for ni in filiere.niveaux %}
+			<tr>
+				<td>
+					<a href="{{ path('o_fort_prerentree_niveau_view', {'id': ni.id}) }}">{{ni.nom}}</a>
+				</td>
+				<td>
+					<a href="{{ path('o_fort_prerentree_niveau_modify', { 'id' : ni.id}) }}">Modifier</a>
+				</td>
+				<td>Supprimer</td>
+			</tr>
+			<tr><td><ul>
+				{% for div in ni.divisions %}
+					<li><a href="{{ path('o_fort_prerentree_division_view', {'id': div.id}) }}">{{div.nom}}</a></li>
+				{% endfor %}
+			</ul></td></tr>
+		{% endfor %}
+	</tbody></table>	
+</div>
+
+<div>
+	<a href=" {{ path('o_fort_prerentree_niveau_add', {'idFiliere': filiere.id}) }}"> Ajouter un niveau à la filiere</a>
+</div>
+
+{% endblock %}

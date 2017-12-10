@@ -1,0 +1,35 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Filieres - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+    <h2>Liste des filieres</h2>
+    <table class="table table-striped">
+    	<tr>
+    		<td>N°</td>
+            <td></td>
+    		<td>Nom de la Filiere</td>
+
+       	</tr>
+    	{% for fi in filieres %}
+    		<tr>
+    			<td>{{ loop.index }}</td>
+                <td>
+                    <a href=" {{ path('o_fort_prerentree_filiere_del', {'id': fi.id}) }}">Supprimer</a>
+                </td>
+    			<td>
+    				<a href="{{ path('o_fort_prerentree_filiere_view', {'id': fi.id}) }}">{{ fi.nom }}</a>
+    			</td>
+
+                <td> <a href="{{ path('o_fort_prerentree_struct', {'id': fi.idStructure.id}) }}">{{ fi.idStructure.nom }}</a></td>
+
+    		</tr>
+    	{% endfor %}
+    </table>
+
+
+{% endblock %}

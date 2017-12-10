@@ -1,0 +1,14 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Ajouter un enseignement - 
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  <h4>Ajouter une division</h4>
+
+  {{ include("OFortPrerentreeBundle:Divisions:formDivision.html.twig") }}
+
+{% endblock %}

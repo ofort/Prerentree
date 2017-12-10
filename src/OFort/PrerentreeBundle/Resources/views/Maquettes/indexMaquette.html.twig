@@ -1,0 +1,40 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Liste des maquettes - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+    <h2>Liste des maquettes</h2>
+    <table class="table table-striped">
+    	<tr>
+    		<td>N°</td>
+            <td>Id</td><td></td>
+    		<td>Nom</td>
+    		<td class="text-right">Besoins classe simple</td>
+            <td class="text-right">Besoins classe dédoublée</td>
+            <td class="text-right">Besoins classe classe détriplée</td>
+       	</tr>
+    	{% for ma in maquettes %}
+    		<tr>
+    			<td>{{ loop.index }}</td>
+                <td>{{ ma.id }}</td>
+                <td>
+                    <a href=" {{ path('o_fort_prerentree_maquette_del', {'id': ma.id}) }}">Supprimer</a>
+                </td>
+    			<td>
+    				<a href="{{ path('o_fort_prerentree_maquette_view', {'id': ma.id}) }}">{{ ma.nom }}</a>
+    			</td>
+    			<td class="text-right">{{ ma.besoinSimple }}</td>
+                <td class="text-right">{{ ma.besoinDedouble }}</td>
+                <td class="text-right">{{ ma.besoinDetriple }}</td>
+    		</tr>
+    	{% endfor %}
+    </table>
+
+    <a href="{{ path('o_fort_prerentree_maquette_add') }}">Ajouter une maquette</a>
+
+
+{% endblock %}

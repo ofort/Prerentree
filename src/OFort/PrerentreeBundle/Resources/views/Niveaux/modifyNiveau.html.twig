@@ -1,0 +1,16 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier le niveau - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+
+  <p>Modifier le niveau {{ niveau.nom }}</p>
+
+  {{ include("OFortPrerentreeBundle:Niveaux:formNiveau.html.twig") }}
+
+
+{% endblock %}

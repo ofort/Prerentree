@@ -1,0 +1,18 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Supprimer une maquette - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  <h4>Supprimer une structure</h4>
+
+ 	<div class="alert alert-danger" role="alert">
+  		Confirmer la suppression de la structure {{ struct.nom }}. Cette action entraîne la suppression des filières de la structure.
+	</div>
+  <a href="{{ path('o_fort_prerentree_struct_confirmdel', {'id': struct.id}) }}"><button type="button" class="btn btn-danger">Je confirme</button></a>
+  <a href="{{ path('o_fort_prerentree_structure') }}"><button type="button" class="btn btn-success">Non surtout pas !</button></a>
+  
+{% endblock %}

@@ -1,0 +1,3 @@
+o_fort_core_homepage:
+    path:     /
+    defaults: { _controller: OFortCoreBundle:Default:index }

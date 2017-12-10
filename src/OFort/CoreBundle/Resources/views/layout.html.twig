@@ -1,0 +1,96 @@
+{# Ofort/CoreBundle/Resources/views/layout.html.twig #}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Préparation de rentree, calcul des besoins{% endblock %}</title>
+    {% block stylesheets %}
+     {# On charge le CSS de bootstrap depuis le site directement #}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+
+
+    {% endblock %}
+  </head>
+  <body>
+    <div class="container">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ path('o_fort_core_homepage') }}">DDF Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+
+{#            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+#}
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Pré rentrée
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ path('o_fort_prerentree_structure') }}">Structures</a>
+                <a class="dropdown-item" href="{{ path('o_fort_prerentree_filiere') }}">Filières</a>
+                <a class="dropdown-item" href="{{ path('o_fort_prerentree_maquette') }}">Maquettes</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+
+{#             <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+#}
+
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
+
+      <div id="header">
+        <h1>DDF DASHBOARD</h1>
+        <p>
+        Tableau de bord du DDFPT</p>
+        <p>
+        </div>
+
+        <div class="row">
+          <div id="content" class="col-md-9">
+            {% block body %}
+            {% endblock %}
+          </div>
+        </div>
+        
+        <hr>
+
+        <footer>
+          <p>©O.Fort{{ 'now'|date('Y') }}.</p>
+        </footer>
+      </div>
+
+      {% block javascripts %}
+        {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+        {#
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> #}
+      {% endblock %}
+    </body>
+  </html>

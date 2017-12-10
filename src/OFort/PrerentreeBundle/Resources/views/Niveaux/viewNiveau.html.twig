@@ -1,0 +1,75 @@
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+{% block title %}
+	Détail d'un niveau - {{ parent() }}
+{% endblock %}
+{% block ofortprerentree_body %}
+	<h3>Vue du niveau {{niveau.id}} : <br> {{niveau.nom|e}} ({{ niveau.nomCourt }})</h3>
+
+	<div class="row">	
+		<div class="col-sm-6">
+			<div class="alert alert-success" role="alert">
+				<a href="{{ path('o_fort_prerentree_niveau_modify', {'id' : niveau.id}) }}">Modifier</a>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="alert alert-success" role="alert">
+				<a href="{{ path('o_fort_prerentree_filiere_view', {'id' : niveau.filiere.id}) }}">Retour à la liste des filieres</a>
+			</div>
+		</div>
+	</div>
+	<p>
+		<a href="{{ path('o_fort_prerentree_struct', {'id':niveau.filiere.idStructure.id}) }}">
+			{{niveau.filiere.idStructure.nom}}
+		</a> /
+		<a href="{{ path('o_fort_prerentree_filiere_view', {'id':niveau.filiere.id}) }}">
+			{{niveau.filiere.nom}}
+		</a>
+	</p>	
+	<h3>Détail du niveau</h3>
+	<table class="table table-striped">
+			<tr>
+				<td>Nom</td>
+				<td>{{niveau.nom|e}}</td>
+			</tr>
+			<tr>
+				<td>Commentaire</td>
+				<td>{{niveau.annotation|e}}</td>
+			</tr>
+		</table>
+
+		<div>
+			<h3>Division(s) de ce niveau</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Division</th>
+						<th>Nom court</th>
+						<th>Maquette</th>
+						<th>Besoins</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for division in niveau.divisions %}
+						<tr>
+							<td>
+								<a href="{{ path('o_fort_prerentree_division_view', {'id': division.id}) }}">{{division.nom}}</a>
+							</td>
+							<td>{{ division.nomCourt }}</td>
+							<td>{{ division.maquette.nom }}</td>
+							<td>{{ division.besoinTotal }}</td>
+							<td>
+								<a href="{{ path('o_fort_prerentree_division_modify', { 'id' : division.id}) }}">Modifier</a>
+							</td>
+							<td><a href=" {{ path('o_fort_prerentree_division_del', {'id' : division.id})}}">Supprimer</a> </td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		
+		<div>
+			<a href=" {{ path('o_fort_prerentree_division_add', {'idNiveau': niveau.id}) }}"> Ajouter une division à ce niveau</a>
+		</div>
+	{% endblock %}

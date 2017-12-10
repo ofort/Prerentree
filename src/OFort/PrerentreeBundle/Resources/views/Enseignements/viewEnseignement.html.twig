@@ -1,0 +1,45 @@
+{% extends "OFortPrerentreeBundle::layout.html.twig" %} {% block title %} Liste des structures - {{ parent() }} {% endblock %} {% block ofortprerentree_body %}
+<h3>
+	Enseignement {{enseignement.id}} <br> 
+	{{enseignement.nom|e}}
+</h3>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="alert alert-success" role="alert">
+			<a href="{{ path('o_fort_prerentree_enseignement_modify', {id: enseignement.id}) }}">Modifier l'enseignement</a>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="alert alert-success" role="alert">
+			<a href="{{ path('o_fort_prerentree_maquette_view', {id: enseignement.maquette.id}) }}">Retour à la maquette {{ enseignement.maquette.nom }}</a>
+		</div>
+	</div>
+</div>
+<h3>Détail de l'enseignement</h3>
+<p>Durées en heures</p>
+<table class="table table-striped">
+	<tr>
+		<td>Nom</td>
+		<td>{{enseignement.nom|e}}</td>
+	</tr>
+	<tr>
+		<td>Commentaire</td>
+		<td>{{enseignement.commentaire|e}}</td>
+	</tr>
+	<tr>
+		<td>Durée</td>
+		<td class="text-right">{{ enseignement.duree }}</td>
+	</tr>
+	<tr>
+		<td>Dont durée en classe dédoublée</td>
+		<td class="text-right">{{ enseignement.dureeDedoublee }}</td>
+	</tr>
+	<tr>
+		<td>Dont durée en classe détriplée</td>
+		<td class="text-right">{{ enseignement.dureeDetriplee }}</td>
+	</tr>
+</table>
+
+<h4>Total des besoins pour l'enseignement : {{ enseignement.dureeTotale }} heure(s)</h4>
+
+{% endblock %}

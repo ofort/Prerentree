@@ -1,0 +1,58 @@
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+{% block title %}
+	Liste des structures - {{ parent() }}
+{% endblock %}
+{% block ofortprerentree_body %}
+	<h2>Vue de la structure {{struct.id}} {{struct.nom}}</h2>
+
+	<div class="row">	
+	<div class="col-sm-4">
+		<div class="alert alert-success" role="alert">
+			<a href="{{ path('o_fort_prerentree_struct_modify', {'id': struct.id }) }}">Modifier la structure</a>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="alert alert-success" role="alert">
+			<a href="{{ path('o_fort_prerentree_structure') }}">Retour à la liste</a>
+		</div>
+	</div>
+	<h3>Détail de la structure</h3>
+	</div>	
+		<table class="table table-striped">
+			<tr>
+				<td>Commentaire</td>
+				<td>{{struct.commentaire}}</td>
+			</tr>
+			<tr>
+				<td>Version</td>
+				<td>{{struct.version}}</td>
+			</tr>
+			<tr>
+				<td>Rentrée</td>
+				<td>{{struct.rentree}}</td>
+			</tr>
+			<tr>
+				<td>Date de création</td>
+				<td>{{struct.dateCreation|date('d-m-Y')}}</td>
+			</tr>
+		</table>
+
+		<div>
+			<h3>Filières de la structure</h3>
+
+			<ul class="list-group">
+				{% for fi in struct.filieres %}
+					<li  class="list-group-item">
+						<strong>{{loop.index}}
+							<a href="{{ path('o_fort_prerentree_filiere_view', {'id': fi.id}) }}">{{ fi.nom }}</a>  &nbsp
+						</strong>
+						({{ fi.nomCourt }})
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		
+		<div>
+			<a href=" {{ path('o_fort_prerentree_filiere_add', {'idStructure': struct.id}) }}"> Ajouter une filière à la structure</a>
+		</div>
+	{% endblock %}

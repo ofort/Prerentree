@@ -1,0 +1,19 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter une structure - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  <h2>Ajouter une structure pédagogique</h2>
+
+  {{ include("OFortPrerentreeBundle:Structures:form.html.twig") }}
+
+  <p>
+    Creation d'une structure pédagogique
+  </p>
+
+
+{% endblock %}

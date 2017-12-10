@@ -1,0 +1,26 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Supprimer une filiere - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  <h4>Supprimer une filiere</h4>
+
+ 	<div class="alert alert-danger" role="alert">
+  		Confirmer la suppression de la filiere {{ filiere.nom}}
+	</div>
+
+	<div class="alert alert-danger" role="alert">
+  		OK <a href="{{ path('o_fort_prerentree_filiere_confirmDel', {'id': filiere.id}) }}" class="alert-link">Je confirme</a>.
+	</div>
+	<div class="alert alert-success" role="alert">
+		 <a href="{{ path('o_fort_prerentree_filiere') }}" class="alert-link">Non</a> surtout pas.
+	</div>
+
+  
+
+
+{% endblock %}

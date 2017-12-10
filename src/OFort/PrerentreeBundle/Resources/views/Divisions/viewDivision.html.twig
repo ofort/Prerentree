@@ -1,0 +1,82 @@
+{% extends "OFortPrerentreeBundle::layout.html.twig" %} {% block title %} Liste des structures - {{ parent() }} {% endblock %} {% block ofortprerentree_body %}
+<h4>Vue de la division {{division.id}} <br> {{division.nom|e}}</h4>
+
+<div class="row">
+	<h5>Détail de la division</h5>
+
+	<nav aria-label="breadcrumb" role="navigation">
+	  <ol class="breadcrumb">
+
+	    <li class="breadcrumb-item">
+			<a href="{{ path('o_fort_prerentree_struct', {'id' : division.niveau.filiere.idStructure.id}) }}">
+				{{ division.niveau.filiere.idStructure.nom|e }}
+			</a>
+	    </li>
+
+	    <li class="breadcrumb-item">
+			<a href="{{ path('o_fort_prerentree_filiere_view', {'id' : division.niveau.filiere.id}) }}">
+				{{ division.niveau.filiere.nomCourt|e }}
+			</a>
+	    </li>
+
+	    <li class="breadcrumb-item">
+			<a href="{{ path('o_fort_prerentree_niveau_view', {'id' : division.niveau.id}) }}">
+				{{ division.niveau.nomCourt|e }}
+			</a> 
+	    </li>
+
+	    <li class="breadcrumb-item">{{ division.nomCourt}}</li>
+	  </ol>
+	</nav>
+
+	<table class="table table-striped">
+		<tr><td>Nom</td><td>{{division.nom|e}}</td></tr>
+		<tr>
+			<td>Nom court</td>
+			<td>{{division.nomCourt|e}}</td>
+		</tr>
+		<tr>
+			<td>Classe dédoublée</td>
+			{% if division.classeDedoublee %}
+				<td>Oui</td>
+			{% else %}
+				<td>Non</td>
+			{% endif %}
+		</tr>
+		<tr>
+			<td>Classe détriplée</td>
+			{% if division.classeDetriplee %}			
+				<td>Oui</td>
+			{% else %}
+				<td>Non</td>
+			{% endif %}
+		</tr>
+	</table>
+</div>
+<div class="row">
+	<h5>Enseignements de la divisions (total des besoins : {{ division.besoinTotal }})</h5>
+	<table class="table table-responsive table-hover">
+		<tr>
+			<th></th>
+			<th>Besoin total</th>
+			<th>Durée élève</th>
+			<th>En classe entiere</th>
+			<th>En groupe dédoublé</th>
+			<th>En groupe détriplé</th>
+		</tr>
+		{% for asso in division.associations %}
+		    <tr>
+		    	<td>{{ asso.enseignement.nom }}</td>
+
+				<td class='text-center'>{{ asso.besoinTotal }}</td>
+
+				<td class='text-center'>{{ asso.enseignement.duree }}</td>
+
+				<td class='text-center'>{{ asso.besoinClasseEntiere }}</td>
+		    	<td class='text-center'>{{ asso.besoinClasseDedoublee }}</td>
+				<td class='text-center'>{{ asso.besoinClasseDetriplee }}</td>
+		    </tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

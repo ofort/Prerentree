@@ -1,0 +1,20 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Supprimer une division - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  <h4>Supprimer une division</h4>
+
+ 	<div class="alert alert-danger" role="alert">
+  		Confirmer la suppression de la division {{ division.nom}}
+	</div>
+  <button type="button" class="btn btn-danger"><a href="{{ path('o_fort_prerentree_division_confirmDel', {'id': division.id}) }}">Je confirme</a></button>
+  <button type="button" class="btn btn-success"><a href="{{ path('o_fort_prerentree_niveau_view', {'id' : division.niveau.id}) }}">Non surtout pas !</a></button>
+  
+
+
+{% endblock %}

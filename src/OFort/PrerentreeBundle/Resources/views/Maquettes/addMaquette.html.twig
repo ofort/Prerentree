@@ -1,0 +1,15 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter une maquette - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  <h4>Ajouter une maquette</h4>
+
+  {{ include("OFortPrerentreeBundle:Maquettes:formMaquette.html.twig") }}
+
+
+{% endblock %}
