@@ -1,0 +1,15 @@
+o_fort_prerentree_discipline_add:
+    path: /add
+    defaults:
+        _controller: OFortPrerentreeBundle:Discipline:add
+ 
+o_fort_prerentree_discipline:
+    path: /
+    defaults:
+        _controller: OFortPrerentreeBundle:Discipline:index
+
+o_fort_prerentree_discipline_modifiy:
+    path: /modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Discipline:modify
+

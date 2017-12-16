@@ -132,6 +132,11 @@ o_fort_prerentree_division_view:
     defaults:
         _controller: OFortPrerentreeBundle:Division:view
 
+o_fort_prerentree_division_modify:
+    path:   /division/modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:modify
+        
 o_fort_prerentree_division_del:
     path:  /division/del/{id}
     defaults:
@@ -148,8 +153,21 @@ o_fort_prerentree_division_modify:
         _controller: OFortPrerentreeBundle:Division:modify
 
 o_fort_prerentree_repartition_add:
-    path: /repartition/add/{divisionId}
+    path: /repartition/add/{assoId}
     defaults:
         _controller: OFortPrerentreeBundle:Repartition:add
 
- 
+o_fort_prerentree_repartition_delete:
+    path: /repartition/delete/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Repartition:delete
+
+o_fort_prerentree_repartition_confirmDelete:
+    path: /repartition/confirmdelete/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Repartition:confirmDelete
+
+o_fort_prerentree_discipline:
+    resource: "@OFortPrerentreeBundle/Resources/config/discipline/routing.yml"
+    prefix:   /discipline
+

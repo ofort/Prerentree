@@ -1,0 +1,28 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter une discipline - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+	<h3>Division : {{ association.division.nom }}</h3>
+  	<h4>
+  		Ajouter une discipline à l'enseignement : <br>
+  		{{ association.enseignement.nom }}
+  	</h4>
+  	<p>duree à répartir : {{ association.besoinTotal }}</p>
+  	<p>Durée répartie   : {{ association.dureeRepartie }}</p>
+  	<p>Reste à répartir : {{ association.besoinTotal - association.dureeRepartie }}</p>
+  	<ul>
+  	{% for repart in association.repartitions %}
+  		<li>
+        {{ repart.discipline.intitule }} : {{ repart.duree }}
+        <a class="btn btn-danger btn-sm" href="{{ path('o_fort_prerentree_repartition_delete', {'id' : repart.id} ) }}" role="button">supprimer</a>
+      </li>
+  	{% endfor %}
+	</ul>
+  	{{ include("OFortPrerentreeBundle:Repartition:formRepartition.html.twig") }}
+
+
+{% endblock %}

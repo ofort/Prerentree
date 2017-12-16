@@ -44,7 +44,7 @@ class discipline
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="repartition", mappedBy="integer")
+     * @ORM\OneToMany(targetEntity="repartition", mappedBy="discipline")
      */
     private $repartitions;
 

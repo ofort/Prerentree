@@ -25,7 +25,14 @@ class repartition
      *
      * @ORM\ManyToOne(targetEntity="discipline", inversedBy = "$repartitions")
      */
-    private $disciplines;
+    private $discipline;
+
+        /**
+     * @var int
+     *
+     * @ORM\Column(name="duree", type="integer")
+     */
+    private $duree;
 
     /**
      *
@@ -145,5 +152,77 @@ class repartition
     public function removeDiscipline(\OFort\PrerentreeBundle\Entity\discipline $discipline)
     {
         $this->disciplines->removeElement($discipline);
+    }
+
+    /**
+     * Set duree
+     *
+     * @param integer $duree
+     *
+     * @return repartition
+     */
+    public function setDuree($duree)
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    /**
+     * Get duree
+     *
+     * @return integer
+     */
+    public function getDuree()
+    {
+        return $this->duree;
+    }
+
+    /**
+     * Set association
+     *
+     * @param \OFort\PrerentreeBundle\Entity\association $association
+     *
+     * @return repartition
+     */
+    public function setAssociation(\OFort\PrerentreeBundle\Entity\association $association = null)
+    {
+        $this->association = $association;
+
+        return $this;
+    }
+
+    /**
+     * Get association
+     *
+     * @return \OFort\PrerentreeBundle\Entity\association
+     */
+    public function getAssociation()
+    {
+        return $this->association;
+    }
+
+    /**
+     * Set discipline
+     *
+     * @param \OFort\PrerentreeBundle\Entity\discipline $discipline
+     *
+     * @return repartition
+     */
+    public function setDiscipline(\OFort\PrerentreeBundle\Entity\discipline $discipline = null)
+    {
+        $this->discipline = $discipline;
+
+        return $this;
+    }
+
+    /**
+     * Get discipline
+     *
+     * @return \OFort\PrerentreeBundle\Entity\discipline
+     */
+    public function getDiscipline()
+    {
+        return $this->discipline;
     }
 }

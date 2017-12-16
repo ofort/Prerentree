@@ -5,10 +5,10 @@ namespace OFort\PrerentreeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * enseignement
+ * association
  *
  * @ORM\Table(name="association")
- * @ORM\Entity(repositoryClass="OFort\PrerentreeBundle\Repository\enseignementDivRepository")
+ * @ORM\Entity(repositoryClass="OFort\PrerentreeBundle\Repository\associationRepository")
  */
 class association
 {
@@ -20,6 +20,13 @@ class association
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="dureeRepartie", type="integer")
+     */
+    private $dureeRepartie;
 
     /**
      *
@@ -35,7 +42,7 @@ class association
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="repartition", mappedBy="integer")
+     * @ORM\OneToMany(targetEntity="repartition", mappedBy="association")
      */
     private $repartitions;
     
@@ -44,12 +51,14 @@ class association
     private $besoinClasseDetriplee;
     private $besoinTotal;
 
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->enseignements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dureeRepartie = 0;
     }
 
     /**
@@ -126,7 +135,7 @@ class association
                 $this->besoinClasseDedoublee += $this->getEnseignement()->getDureeDedoublee();
             }else{
                  $this->besoinClasseDedoublee += (  $this->getEnseignement()->getDureeDedoublee()
-                                                  - $this->getEnseignement()->getDureeDetriplee());              
+                     - $this->getEnseignement()->getDureeDetriplee());              
             }
         }
 
@@ -142,16 +151,18 @@ class association
     }
 
     public function getbesoinClasseEntiere() {
-        $this->besoinClasseEntiere = 0;
-        $this->besoinClasseEntiere += ( $this->getEnseignement()->getDuree() - $this->getEnseignement()->getDureeDedoublee());
-        $this->besoinClasseEntiere = $this->besoinClasseEntiere;
+
+        $this->besoinClasseEntiere = $this->getEnseignement()->getDuree()
+                                   - $this->besoinClasseDedoublee
+                                   - $this->besoinClasseDetriplee;
+
         return $this->besoinClasseEntiere;
     }
 
     public function getBesoinTotal() {
-        $this->besoinTotal = $this->getbesoinClasseEntiere()
-                           + $this->getBesoinClasseDedoublee() * 2
-                           + $this->getBesoinClasseDetriplee() * 3;
+        $this->besoinTotal = $this->getEnseignement()->getDuree()
+                           + $this->getBesoinClasseDedoublee()
+                           + $this->getBesoinClasseDetriplee()*2;
         return $this->besoinTotal;
     }
 
@@ -178,5 +189,63 @@ class association
     public function getEnseignement()
     {
         return $this->enseignement;
+    }
+
+    /**
+     * Add repartition
+     *
+     * @param \OFort\PrerentreeBundle\Entity\repartition $repartition
+     *
+     * @return association
+     */
+    public function addRepartition(\OFort\PrerentreeBundle\Entity\repartition $repartition)
+    {
+        $this->repartitions[] = $repartition;
+
+        return $this;
+    }
+
+    /**
+     * Remove repartition
+     *
+     * @param \OFort\PrerentreeBundle\Entity\repartition $repartition
+     */
+    public function removeRepartition(\OFort\PrerentreeBundle\Entity\repartition $repartition)
+    {
+        $this->repartitions->removeElement($repartition);
+    }
+
+    /**
+     * Get repartitions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRepartitions()
+    {
+        return $this->repartitions;
+    }
+
+    /**
+     * Set dureeRepartie
+     *
+     * @param integer $dureeRepartie
+     *
+     * @return association
+     */
+    public function setDureeRepartie($dureeRepartie)
+    {
+        $this->dureeRepartie = $dureeRepartie;
+
+        return $this;
+    }
+
+    /**
+     * Get dureeRepartie
+     *
+     * @return integer
+     */
+    public function getDureeRepartie()
+    {
+        return $this->dureeRepartie;
     }
 }

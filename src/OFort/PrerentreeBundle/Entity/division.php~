@@ -267,7 +267,6 @@ class division
     public function __construct()
     {
         $this->repartitions = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->classeChecked = false;
     }
     /**
      * Add association
@@ -309,29 +308,5 @@ class division
             $this->besoinTotal += $asso->getBesoinTotal();
         }
         return $this->besoinTotal;
-    }
-
-    /**
-     * Set classeChecked
-     *
-     * @param boolean $classeChecked
-     *
-     * @return division
-     */
-    public function setClasseChecked($classeChecked)
-    {
-        $this->classeChecked = $classeChecked;
-
-        return $this;
-    }
-
-    /**
-     * Get classeChecked
-     *
-     * @return boolean
-     */
-    public function getClasseChecked()
-    {
-        return $this->classeChecked;
     }
 }

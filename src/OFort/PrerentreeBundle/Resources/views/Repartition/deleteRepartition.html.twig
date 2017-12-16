@@ -1,0 +1,19 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter une discipline - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+	
+<div class="row">
+  <p>Êtes vous certaine de vouloir supprimer la discipline {{ repartition.discipline.intitule }} dans la répartition de l'enseignement {{ repartition.association.enseignement.nom }} de la division {{ repartition.association.division.nomCourt }}</p>
+  <p>
+    <a class="btn btn-danger btn-xs" href="{{ path('o_fort_prerentree_repartition_confirmDelete', {id: repartition.id} ) }}" role="button">Absolument</a>
+    <a class="btn btn-success btn-xs" href="{{ path('o_fort_prerentree_repartition_add', {assoId: repartition.association.id} ) }}" role="button">Non</a>
+  </p>
+</div>
+
+
+{% endblock %}
