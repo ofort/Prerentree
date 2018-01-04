@@ -32,81 +32,6 @@ o_fort_prerentree_struct_confirmdel:
     defaults:
         _controller: OFortPrerentreeBundle:Structures:confirmDel
 
-o_fort_prerentree_filiere_add:
-    path:     /filiere/add/{idStructure}
-    defaults:
-        _controller: OFortPrerentreeBundle:Filieres:add
-
-o_fort_prerentree_filiere_view:
-    path:     /filiere/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Filieres:view
-
-o_fort_prerentree_filiere:
-    path:     /filiere
-    defaults:
-        _controller: OFortPrerentreeBundle:Filieres:index
-
-o_fort_prerentree_filiere_modify:
-    path:     /filiere/modify/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Filieres:modify
-
-o_fort_prerentree_filiere_del:
-    path:  /filiere/del/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Filieres:del
-
-o_fort_prerentree_filiere_confirmDel:
-    path:  /filiere/confirmDel/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Filieres:confirmDel
- 
-o_fort_prerentree_niveau_add:
-    path:    /niveau/add/{idFiliere}
-    defaults:
-        _controller: OFortPrerentreeBundle:Niveaux:add
-
-o_fort_prerentree_niveau_view:
-    path:   /niveau/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Niveaux:view
-
-o_fort_prerentree_niveau_modify:
-    path:   /niveau/modify/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Niveaux:modify
-
-o_fort_prerentree_maquette_add:
-    path:   /maquette/add
-    defaults:
-        _controller: OFortPrerentreeBundle:Maquette:add
-
-o_fort_prerentree_maquette_view:
-    path:  /maquette/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Maquette:view
-
-o_fort_prerentree_maquette:
-    path:  /maquette
-    defaults:
-        _controller: OFortPrerentreeBundle:Maquette:index
-
-o_fort_prerentree_maquette_modify:
-    path:  /maquette/modify/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Maquette:modify
-
-o_fort_prerentree_maquette_del:
-    path:  /maquette/del/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Maquette:del
-
-o_fort_prerentree_maquette_confirmDel:
-    path:  /maquette/confirmDel/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Maquette:confirmDel
-                
 o_fort_prerentree_enseignement_add:
     path:   /enseignement/add/{idMaquette}
     defaults:
@@ -122,40 +47,15 @@ o_fort_prerentree_enseignement_modify:
     defaults:
         _controller: OFortPrerentreeBundle:Enseignement:modify
 
-o_fort_prerentree_division_add:
-    path:   /division/add/{idNiveau}
-    defaults:
-        _controller: OFortPrerentreeBundle:Division:addForLevel
-
-o_fort_prerentree_division_view:
-    path:   /division/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Division:view
-
-o_fort_prerentree_division_modify:
-    path:   /division/modify/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Division:modify
-        
-o_fort_prerentree_division_del:
-    path:  /division/del/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Division:del
-
-o_fort_prerentree_division_confirmDel:
-    path:  /division/confirmDel/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Division:confirmDel
-
-o_fort_prerentree_division_modify:
-    path:  /division/modify/{id}
-    defaults:
-        _controller: OFortPrerentreeBundle:Division:modify
-
 o_fort_prerentree_repartition_add:
     path: /repartition/add/{assoId}
     defaults:
         _controller: OFortPrerentreeBundle:Repartition:add
+
+o_fort_prerentree_repartition_addBarette:
+    path: /repartition/addBarette/{baretteId}
+    defaults:
+        _controller: OFortPrerentreeBundle:Repartition:addForBarette
 
 o_fort_prerentree_repartition_delete:
     path: /repartition/delete/{id}
@@ -171,3 +71,30 @@ o_fort_prerentree_discipline:
     resource: "@OFortPrerentreeBundle/Resources/config/discipline/routing.yml"
     prefix:   /discipline
 
+o_fort_prerentree_maquette:
+    resource: "@OFortPrerentreeBundle/Resources/config/maquette/routing.yml"
+    prefix:   /maquette
+
+o_fort_prerentree_enseignement:
+    resource: "@OFortPrerentreeBundle/Resources/config/enseignement/routing.yml"
+    prefix:   /enseignement
+
+o_fort_prerentree_division:
+    resource: "@OFortPrerentreeBundle/Resources/config/division/routing.yml"
+    prefix:   /division
+
+o_fort_prerentree_niveau:
+    resource: "@OFortPrerentreeBundle/Resources/config/niveau/routing.yml"
+    prefix:   /niveau
+
+o_fort_prerentree_barette:
+    resource: "@OFortPrerentreeBundle/Resources/config/barette/routing.yml"
+    prefix:   /barette
+
+o_fort_prerentree_niveauFormation:
+    resource: "@OFortPrerentreeBundle/Resources/config/niveauFormation/routing.yml"
+    prefix:   /niveauFormation
+
+o_fort_prerentree_filiere:
+    resource: "@OFortPrerentreeBundle/Resources/config/filiere/routing.yml"
+    prefix:   /filiere

@@ -1,0 +1,14 @@
+o_fort_prerentree_niveauFormation:
+    path:     /
+    defaults:
+        _controller: OFortPrerentreeBundle:NiveauFormation:index
+
+o_fort_prerentree_niveauFormation_addForStructure:
+    path:     /add/{idStructure}
+    defaults:
+        _controller: OFortPrerentreeBundle:NiveauFormation:addForStructure
+
+o_fort_prerentree_niveauFormation_view:
+    path:    /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:NiveauFormation:view

@@ -1,88 +1,63 @@
-{% extends "OFortPrerentreeBundle::layout.html.twig" %} {% block title %} Liste des structures - {{ parent() }} {% endblock %} {% block ofortprerentree_body %}
-<h4>Vue de la division {{division.id}} <br> {{division.nom|e}}</h4>
+{% extends "OFortPrerentreeBundle::layout.html.twig" %} {% block title %} Liste des structures - {{ parent() }} {% endblock %}
+{% block head %}{{division.nom|e}} <br><span class="small">Division</span> {% endblock %}
+{% block ofortprerentree_body %}
+    <p>
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{{ path('o_fort_prerentree_struct', {'id' : division.niveauFormation.structure.id}) }}">
+              {{ division.niveauFormation.structure.nom|e }}
+            </a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{{ path('o_fort_prerentree_niveauFormation_view', {'id' : division.niveauFormation.id}) }}">
+              {{ division.niveauFormation.nom|e }}
+            </a>
+          </li>
+          <li class="breadcrumb-item">{{ division.nomCourt}}</li>
+        </ol>
+      </nav>
+    </p>
+    {# Entete de description de la division #}
+    <div id="details" class="row">
+      <div class="col-lg-3">
+        <h4>{{ division.nomCourt }}<br><span class="small">Détails de la division</span></h4>
+        <p><a href="{{ path('o_fort_prerentree_division_modify', {id: division.id}) }}">Modifier</a></p>
+      </div>
+      <div class="col-lg-9">
+        <table id="parametres" class="table table-responsive table-condensed table-striped">
+          <tr>
+            <td>Nom</td>
+            <td>{{division.nom|e}}</td>
+          </tr>
+          <tr>
+            <td>Maquette</td>
+            <td>{% if division.maquette %} {{division.maquette.nom}} {% endif %}</td>
+          </tr>
+          <tr>
+            <td>Classe dédoublée</td>
+            {% if division.classeDedoublee %}
+              <td>Oui</td>
+            {% else %}
+              <td>Non</td>
+            {% endif %}
+          </tr>
+          <tr>
+            <td>Classe détriplée</td>
+            {% if division.classeDetriplee %}
+              <td>Oui</td>
+            {% else %}
+              <td>Non</td>
+            {% endif %}
+          </tr>
+        </table>
+      </div>
+    </div>
 
-<h5>Détail de la division</h5>
-<p>
-  <nav aria-label="breadcrumb" role="navigation">
-    <ol class="breadcrumb">
+    {# Enseignements provenant d'une maquette #}
+{{ include ("OFortPrerentreeBundle:Divisions:listeEnseignementDivision.html.twig")}}
 
-      <li class="breadcrumb-item">
-        <a href="{{ path('o_fort_prerentree_struct', {'id' : division.niveau.filiere.idStructure.id}) }}">
-				{{ division.niveau.filiere.idStructure.nom|e }}
-			</a>
-      </li>
+    {# Enseignements de la division hors maquette #}
+{{ include ("OFortPrerentreeBundle:Divisions:EnseignementsBaretteDivision.html.twig") }}
 
-      <li class="breadcrumb-item">
-        <a href="{{ path('o_fort_prerentree_filiere_view', {'id' : division.niveau.filiere.id}) }}">
-				{{ division.niveau.filiere.nomCourt|e }}
-			</a>
-      </li>
-
-      <li class="breadcrumb-item">
-        <a href="{{ path('o_fort_prerentree_niveau_view', {'id' : division.niveau.id}) }}">
-				{{ division.niveau.nomCourt|e }}
-			</a>
-      </li>
-
-      <li class="breadcrumb-item">{{ division.nomCourt}}</li>
-    </ol>
-  </nav>
-</p>
-
-<table class="table table-striped">
-  <tr>
-    <td>Nom</td>
-    <td>{{division.nom|e}}</td>
-  </tr>
-  <tr>
-    <td>Nom court</td>
-    <td>{{division.nomCourt|e}}</td>
-  </tr>
-  <tr>
-    <td>Classe dédoublée</td>
-    {% if division.classeDedoublee %}
-    <td>Oui</td>
-    {% else %}
-    <td>Non</td>
-    {% endif %}
-  </tr>
-  <tr>
-    <td>Classe détriplée</td>
-    {% if division.classeDetriplee %}
-    <td>Oui</td>
-    {% else %}
-    <td>Non</td>
-    {% endif %}
-  </tr>
-</table>
-
-
-
-<div class="row">
-  <h5>Enseignements de la division (total des besoins : {{ division.besoinTotal }})</h5>
-  <table class="table table-responsive table-hover table-condensed">
-    <tr>
-      <th></th>
-      <th>Besoin total</th>
-      <th>Durée élève</th>
-      <th>En classe entiere</th>
-      <th>En groupe dédoublé</th>
-      <th>En groupe détriplé</th>
-      <th>Réparti</th>
-      <th></th>
-    </tr>
-    {% for asso in division.associations %}
-    <tr>
-      <td>{{ asso.enseignement.nom }}</td>
-      <td class='text-center'>{{ asso.besoinTotal }}</td>
-      <td class='text-center'>{{ asso.enseignement.duree }}</td>
-      <td class='text-center'>{{ asso.besoinClasseEntiere }}</td>
-      <td class='text-center'>{{ asso.besoinClasseDedoublee }}</td>
-      <td class='text-center'>{{ asso.besoinClasseDetriplee }}</td>
-      <td class='text-center'>{{ asso.dureeRepartie }}</td>
-      <td> <a href={{ path( 'o_fort_prerentree_repartition_add', { 'assoId': asso.id} )}}>Répartir</a></td>
-    </tr>
-    {% endfor %}
-  </table>
-</div>
 {% endblock %}

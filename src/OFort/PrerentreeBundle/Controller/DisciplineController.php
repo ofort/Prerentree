@@ -11,22 +11,13 @@
 
 	class DisciplineController extends Controller
 	{
-		
-//*******************
-
-		
-		// public function viewAction($id)
-		// {
-		// 	$Discipline = new enseignement;
-		// 	$em = $this->getDoctrine()->getManager(); 
-		// 	$repository = $em
-		// 		->getRepository('OFortPrerentreeBundle:Enseignement');
-		// 	//$em->persist($struct); 
-
-		// 	$enseignement = $repository->find($id);
-		// 	return $this->render('OFortPrerentreeBundle:Enseignements:viewEnseignement.html.twig',
-		// 	array('enseignement' => $enseignement));
-		// }
+		public function viewAction($id) {
+			$Discipline = new discipline;
+			$repository = $this->getDoctrine()->getManager()->getRepository('OFortPrerentreeBundle:Discipline');
+			$discipline = $repository->find($id);
+			return $this->render('OFortPrerentreeBundle:Disciplines:viewdiscipline.html.twig',
+			array('discipline' => $discipline));
+		}
 
 		public function modifyAction(Request $request, $id) {
 			$em = $this->getDoctrine()->getManager();
@@ -57,10 +48,7 @@
 			));
 		}
 
-//**********************
-
-		public function addAction(Request $request)
-		{
+		public function addAction(Request $request) {
 			$discipline = new discipline;
 			// createFormBuilder is a shortcut to get the "form factory"
 			// and then call "createBuilder()" on it
@@ -95,8 +83,7 @@
 			));
 		}
 
-		public function indexAction()
-		{
+		public function indexAction() {
 			
 		 	$em = $this->getDoctrine()->getManager();
 

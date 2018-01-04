@@ -15,6 +15,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use OFort\PrerentreeBundle\Entity\maquette;
+use OFort\PrerentreeBundle\Entity\filiere;
+use OFort\PrerentreeBundle\Entity\niveauFormation;
 
 class divisionType extends AbstractType
 {
@@ -34,6 +36,12 @@ class divisionType extends AbstractType
                 'required' => false))
             ->add('maquette', EntityType::class, array(
                 'class' => 'OFortPrerentreeBundle:maquette',
+                'choice_label' => 'nom'))
+            ->add('filiere', EntityType::class, array(
+                'class' => 'OFortPrerentreeBundle:filiere',
+                'choice_label' => 'nomCourt'))
+            ->add('niveauFormation', EntityType::class, array(
+                'class' => 'OFortPrerentreeBundle:niveauFormation',
                 'choice_label' => 'nom'));
     }
     

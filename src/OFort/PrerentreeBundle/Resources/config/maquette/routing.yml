@@ -1,0 +1,34 @@
+o_fort_prerentree_maquette_add:
+    path:  /add
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:add
+
+o_fort_prerentree_maquette_view:
+    path:  /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:view
+
+o_fort_prerentree_maquette:
+    path:  /
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:index
+
+o_fort_prerentree_maquette_modify:
+    path:  /modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:modify
+
+o_fort_prerentree_maquette_del:
+    path:  /del/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:del
+
+o_fort_prerentree_maquette_confirmDel:
+    path:  /confirmDel/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:confirmDel
+
+o_fort_prerentree_maquette_copy:
+    path:  /copy/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Maquette:copy

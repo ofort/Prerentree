@@ -18,7 +18,8 @@
   	{% for repart in association.repartitions %}
   		<li>
         {{ repart.discipline.intitule }} : {{ repart.duree }}
-        <a class="btn btn-danger btn-sm" href="{{ path('o_fort_prerentree_repartition_delete', {'id' : repart.id} ) }}" role="button">supprimer</a>
+        <a class="btn btn-danger btn-xs" href="{{ path('o_fort_prerentree_repartition_delete', {'id' : repart.id} ) }}" role="button">Supprimer</a>
+
       </li>
   	{% endfor %}
 	</ul>

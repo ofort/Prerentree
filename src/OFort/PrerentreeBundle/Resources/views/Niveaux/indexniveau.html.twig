@@ -1,0 +1,31 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Liste des niveaux - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+<div class="row">
+    <h4>Liste des Niveaux</h4>
+    <table class="table table-responsive table-hover table-condensed">
+    	<tr>
+    		<td>Id</td>
+            <td></td>
+    		<td>Nom du niveau</td>
+            <td>Structure</td>
+            <td>Filière</td>
+    	</tr>
+    	{% for niv in niveaux %}
+    		<tr>
+    			<td>{{ niv.id }}</td>
+                <td><a href="#"><i class="material-icons">delete</i></a></td>
+    			<td><a href="{{ path('o_fort_prerentree_niveau', {'id': niv.id} ) }}" title="{{ niv.nom }}">{{ niv.nomCourt }}</a></td>
+                <td><a href="{{ path('o_fort_prerentree_structure', {'id': niv.filiere.idStructure.id} ) }}">{{ niv.filiere.idStructure.nom }}</a></td>
+                <td title="{{ niv.filiere.nom }}"><a href="{{ path('o_fort_prerentree_filiere', {'id': niv.filiere.id } ) }}">{{ niv.filiere.nomCourt }}</a></td>
+    		</tr>
+    	{% endfor %}
+    </table>
+
+</div>
+{% endblock %}

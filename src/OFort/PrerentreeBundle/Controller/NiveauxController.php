@@ -17,15 +17,8 @@
 	use OFort\PrerentreeBundle\Form\niveauType;
 
 
-	class NiveauxController extends Controller
-	{
-
-
-//**********************************************************************
-
-		
-		 public function viewAction($id)
-		 {
+	class NiveauxController extends Controller {
+		public function viewAction($id) {
 		 	$niveau = new niveau;
 		 	$em = $this->getDoctrine()->getManager(); 
 		 	$repository = $this
@@ -38,10 +31,7 @@
 		 	array('niveau' => $niveau ));
 		 }
 
-//****************************************************************************
-
-		public function addAction(Request $request, $idFiliere)
-		{
+		public function addAction(Request $request, $idFiliere)	{
 			$niveau = new niveau;
 			// createFormBuilder is a shortcut to get the "form factory"
 			// and then call "createBuilder()" on it
@@ -57,8 +47,7 @@
 			$form = $this->get('form.factory')->create(NiveauType::class, $niveau);
 
 			// Si la requête est en POST
-			if ($request->isMethod('POST'))
-			{
+			if ($request->isMethod('POST')) {
 				// On fait le lien Requête <-> Formulaire
 				// À partir de maintenant, la variable $struct contient les valeurs entrées dans le formulaire par le visiteur
 				$form->handleRequest($request);
@@ -80,14 +69,12 @@
 			return $this->render('OFortPrerentreeBundle:Niveaux:addNiveau.html.twig', array(
 				'idFiliere' => $idFiliere,
 				'nomFiliere' => $filiere->getNom(),
-				'form' => $form->createView(),
-			));
+				'form' => $form->createView()));
 		}
 
 //*************************************************************************
 
-		public function modifyAction($id, Request $request)
-		{
+		public function modifyAction($id, Request $request) {
 			$niveau = $this
 				->getDoctrine()
 				->getManager()
@@ -123,4 +110,12 @@
 			));
 
 		 }
+		public function indexAction() {
+			$repo = $this->getDoctrine()->getManager()->getRepository('OFortPrerentreeBundle:Niveau');
+			$niveaux = $repo->findAll();
+
+			return $this->render('OFortPrerentreeBundle:Niveaux:indexNiveau.html.twig', array('niveaux' => $niveaux));
+		}
 	}
+?>
+

@@ -1,0 +1,26 @@
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+{% block title %}
+  Ajouter une discipline - {{ parent() }}
+{% endblock %}
+{% block ofortprerentree_body %}
+  <h3>Barette : <span title='{{ barette.nom }}'>{{ barette.nomCourt }}</span> <small>Ajouter une discipline</small></h3>
+  <ul>
+    <li>Duree de la barette : {{ barette.duree }}</li>
+    <li>Durée répartie   : {{ barette.dureeRepartie }}</li>
+    <li>Reste à répartir : {{ barette.duree - barette.dureeRepartie }}</li>
+  </ul>
+
+  {% if barette.dureeRepartie > barette.duree %}
+    <p>{{ barette.dureeRepartie - barette.duree }} heures en co-animation</p>
+  {% endif %}
+  
+  <ul>
+    {% for repart in barette.repartitions %}
+      <li>
+        {{ repart.discipline.intitule }} : {{ repart.duree }}
+        <a class="btn btn-danger btn-xs" href="# {#{{ path('o_fort_prerentree_repartition_delete', {'id' : repart.id} ) }} #}" role="button">Supprimer</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {{ include("OFortPrerentreeBundle:Repartition:formRepartition.html.twig") }}
+{% endblock %}

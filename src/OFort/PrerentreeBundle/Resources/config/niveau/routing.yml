@@ -1,0 +1,19 @@
+o_fort_prerentree_niveau_add:
+    path:    /add/{idFiliere}
+    defaults:
+        _controller: OFortPrerentreeBundle:Niveaux:add
+
+o_fort_prerentree_niveau_view:
+    path:   /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Niveaux:view
+
+o_fort_prerentree_niveau_modify:
+    path:   /modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Niveaux:modify
+
+o_fort_prerentree_niveau:
+    path:   /
+    defaults:
+        _controller: OFortPrerentreeBundle:Niveaux:index

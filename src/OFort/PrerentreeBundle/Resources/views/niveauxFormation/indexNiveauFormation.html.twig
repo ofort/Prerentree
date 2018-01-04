@@ -1,0 +1,35 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Niveau de formation - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+    {% block head %}Liste des niveaux de formation{% endblock %}
+    <table class="table table-striped">
+    	<tr>
+    		<td>N°</td>
+            <td></td>
+    		<td>Nom</td>
+
+       	</tr>
+    	{% for niFor in niveauxFormation %}
+    		<tr>
+    			<td>{{ loop.index }}</td>
+                <td>
+                    <a href=" #{#{{ path('o_fort_prerentree_filiere_del', {'id': fi.id}) }}#}">Supprimer</a>
+                </td>
+    			<td>
+    				<a href="{{ path('o_fort_prerentree_niveauFormation_view', {'id': niFor.id}) }}">{{ niFor.nom }}</a>
+    			</td>
+
+                <td> <a href="{{ path('o_fort_prerentree_struct', {'id': niFor.Structure.id}) }}">{{ niFor.structure.nom }}</a></td>
+
+    		</tr>
+    	{% endfor %}
+    </table>
+
+
+{% endblock %}

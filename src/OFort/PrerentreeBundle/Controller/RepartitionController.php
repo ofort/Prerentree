@@ -6,6 +6,7 @@
 	use Symfony\Component\HttpFoundation\Request;
 	use OFort\PrerentreeBundle\Entity\repartition;
 	use OFort\PrerentreeBundle\Entity\association;
+	use OFort\PrerentreeBundle\Entity\barette;
 
 	use OFort\PrerentreeBundle\Form\repartitionType;
 
@@ -58,6 +59,49 @@
 			return $this->render('OFortPrerentreeBundle:Repartition:addDiscipline.html.twig', array(
 			'form' => $form->createView(),
 			'association' => $association));
+		}
+
+		public function addForBaretteAction(Request $request, $baretteId) {
+			$repartition = new repartition;
+			$em = $this->getDoctrine()->getManager();
+			$repo = $em->getRepository('OFortPrerentreeBundle:barette');
+			$barette = $repo->find($baretteId);
+
+			$repartition->setBarette($barette);
+			
+			$form = $this
+				->get('form.factory')
+				->create(repartitionType::class, $repartition);
+			$dureeRepartie = $barette->getDureeRepartie();
+			// Si la requête est en POST
+			if ($request->isMethod('POST')) {
+				// On fait le lien Requête <-> Formulaire
+
+				$form->handleRequest($request);
+				
+				if ($form->isValid()) {
+					$dureeRepartie += $repartition->getDuree();
+
+						$barette->setDureeRepartie($dureeRepartie);
+
+						$em->persist($repartition);
+						$em->flush();
+
+						$em->persist($barette);
+						$em->flush();
+
+				        $request->getSession()->getFlashBag()->add('notice', 'discipline bien enregistrée.');
+
+						// ... perform some action, such as saving the data to the database
+						//$response->prepare($request);
+
+						return $this->redirectToRoute('o_fort_prerentree_barette_view', array(
+							'id' => $barette->getId()));
+				}
+			}
+			return $this->render('OFortPrerentreeBundle:Repartition:addBaretteDiscipline.html.twig', array(
+			'form' => $form->createView(),
+			'barette' => $barette));
 		}
 
 		public function deleteAction(request $request, $id) {

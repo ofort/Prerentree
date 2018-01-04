@@ -1,0 +1,91 @@
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+{% block title %}
+	Liste des structures - {{ parent() }}
+{% endblock %}
+		{% block head %}{{maquette.nom}}<br> <span class="small"> Maquette </span>{% endblock %}
+
+		{% block ofortprerentree_body %}
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="alert alert-success" role="alert">
+						<a href="{{ path('o_fort_prerentree_maquette_modify', {'id': maquette.id }) }}">Modifier la maquette</a>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="alert alert-success" role="alert">
+						<a href="{{ path('o_fort_prerentree_maquette') }}">Retour à la liste</a>
+					</div>
+				</div>
+				<h3>Détail de la maquette</h3>
+			</div>
+
+			<h5>Total des besoins pour la maquette :</h5>
+			<ul class="list-unstyled">
+				<li>Classe simple : {{ maquette.besoinSimple + maquette.besoinCoanimation }} heures</li>
+				<li>Classe dédoulée : {{ maquette.besoinDedouble + maquette.besoinCoanimation }} heures</li>
+				<li>Classe détriplée : {{ maquette.besoinDetriple + maquette.besoinCoanimation }} heures</li>
+				<li>Dont durée coanimée : {{ maquette.besoinCoanimation }} heures</li>
+			</ul>
+			
+			<h3>Enseignements constituant la maquette</h3>
+			<p>Durées en heures</p>
+
+			<div>
+				<a href=" {{ path('o_fort_prerentree_enseignement_add', {'idMaquette': maquette.id}) }} ">
+					Ajouter un enseignement à la maquette {{maquette.id }}
+				</a>
+			</div>
+
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						<th class="small">N°</th>
+						<th></th>
+					<th>Intitulé</td>
+					<th class="text-right">Durée élève</th>
+					<th class="text-right">Dedoublement</th>
+					<th class="text-right">Détriplement</th>
+					<th class="text-right">Co-animation</th>
+					<th class="text-right">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for ens in maquette.enseignements %}
+						<tr>
+							<td class="small">{{loop.index}}</td>
+							<td class="small">
+								<div class="dropdown">
+									<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Action
+									</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="#">Supprimer</a>
+										<a class="dropdown-item" href="{{ path('o_fort_prerentree_enseignement_modify', {id: ens.id}) }}">Modifier</a>
+										<a class="dropdown-item" href="{{ path('o_fort_prerentree_enseignement_view', {'id': ens.id}) }}">Voir</a>
+									</div>
+								</div>
+							</td>
+							<td>
+								<a href="{{ path('o_fort_prerentree_enseignement_view', {'id': ens.id}) }}">
+									{{ ens.nom }}
+								</a>
+							</td>
+							<td class="text-right">{{ ens.duree }}</td>
+							<td class="text-right">{{ ens.dureeDedoublee }}</td>
+							<td class="text-right">{{ ens.dureeDetriplee }}</td>
+							<td class="text-right">{{ ens.dureeCoanimee}}</td>
+							<td class="text-right">{{ ens.nbDisciplinesCoanimation }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+	
+	<div class="row">
+		<a href=" {{ path('o_fort_prerentree_enseignement_add', {'idMaquette': maquette.id}) }} "> Ajouter un enseignement à la maquette {{maquette.id }}</a>
+	</div>
+	
+	<div class="row">
+		
+	</div>
+{% endblock %}

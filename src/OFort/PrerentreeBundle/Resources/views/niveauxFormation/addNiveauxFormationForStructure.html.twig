@@ -1,0 +1,15 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter niveau de formation - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  {% block head %}Ajouter un niveau de formation {% endblock %}
+
+  {{ include("OFortPrerentreeBundle:niveauxFormation:formNiveauFormation.html.twig") }}
+
+
+{% endblock %}

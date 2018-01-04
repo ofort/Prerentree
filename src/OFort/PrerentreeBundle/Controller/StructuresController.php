@@ -14,8 +14,7 @@
 
 	class StructuresController extends Controller
 	{
-		public function indexAction()
-		{
+		public function indexAction() {
 			
 			$em = $this->getDoctrine()->getManager();
 
@@ -30,8 +29,7 @@
 						array('struct' => $struct ));
 		}
 
-		public function delAction($id)
-		{
+		public function delAction($id) {
 			$em = $this->getDoctrine()->getManager();
 			$repository = $em->getRepository('OFortPrerentreeBundle:structure');
 
@@ -41,8 +39,7 @@
 						array('struct' => $struct ));
 		}
 
-		public function confirmDelAction($id)
-		{
+		public function confirmDelAction($id) {
 			$em = $this->getDoctrine()->getManager();
 			$repository = $em->getRepository('OFortPrerentreeBundle:structure');
 
@@ -58,9 +55,6 @@
 
 			return $this->redirectToRoute('o_fort_prerentree_structure');
 		}
-
-//**********************************************************************
-
 		
 		public function viewAction($id)
 		{
@@ -70,10 +64,8 @@
 				->getDoctrine()
 				->getManager()
 				->getRepository('OFortPrerentreeBundle:Structure');
-			//$em->persist($struct); 
 
 			$struct = $repository->find($id);
-			$filieres = $struct -> getFilieres();
 			return $this->render('OFortPrerentreeBundle:Structures:viewStructure.html.twig',
 			array('struct' => $struct));
 		}

@@ -43,9 +43,9 @@
 				<thead>
 					<tr>
 						<th>Division</th>
-						<th>Nom court</th>
+						<th class="text-right">Effectif</th>
 						<th>Maquette</th>
-						<th>Besoins</th>
+						<th class="text-right">Besoins</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -54,11 +54,11 @@
 					{% for division in niveau.divisions %}
 						<tr>
 							<td>
-								<a href="{{ path('o_fort_prerentree_division_view', {'id': division.id}) }}">{{division.nom}}</a>
+								<a href="{{ path('o_fort_prerentree_division_view', {'id': division.id}) }}" title="{{ division.nom}}">{{division.nomCourt}}</a>
 							</td>
-							<td>{{ division.nomCourt }}</td>
+							<td class="text-right">{{ division.effectif }}</td>
 							<td>{{ division.maquette.nom }}</td>
-							<td>{{ division.besoinTotal }}</td>
+							<td class="text-right">{{ division.besoinTotal }} h</td>
 							<td>
 								<a href="{{ path('o_fort_prerentree_division_modify', { 'id' : division.id}) }}">Modifier</a>
 							</td>
@@ -70,6 +70,6 @@
 		</div>
 		
 		<div>
-			<a href=" {{ path('o_fort_prerentree_division_add', {'idNiveau': niveau.id}) }}"> Ajouter une division à ce niveau</a>
+			<a href=" {{ path('o_fort_prerentree_division_addForNiveau', {'idNiveau': niveau.id}) }}"> Ajouter une division à ce niveau</a>
 		</div>
 	{% endblock %}

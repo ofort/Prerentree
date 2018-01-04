@@ -1,0 +1,34 @@
+{# Liste des enseignements d'une division issus d'une maquette#}  
+    <div id="enseignementsDeMaquette" class="row">
+      <h5>Enseignements de la division (total des besoins : {{ division.besoinTotal }})</h5>
+      <p> <a href="{{ path('o_fort_prerentree_enseignement_addDivision', {'idDivision': division.id}) }}">Ajouter un enseignement</a></p>
+      <table class="table table-responsive table-hover table-condensed">
+        <tr>
+          <th></th>
+          <th>Besoin total</th>
+          <th>Durée élève</th>
+          <th>En classe entiere</th>
+          <th>En groupe dédoublé</th>
+          <th>En groupe détriplé</th>
+          <th>Réparti</th>
+          <th></th>
+        </tr>
+        <tr>
+          {% set maClasse = 'warning' %}
+          {% for asso in division.associations %}
+            {% if asso.besoinTotal == asso.dureeRepartie %}
+              {% set maClasse = 'success' %}
+            {% endif %}
+            <td><a href="{{ path('o_fort_prerentree_enseignement_view', {id: asso.enseignement.id})}}"> ({{ asso.id }}) {{ asso.enseignement.nom }}</a> ({{ asso.enseignement.id }})</td>
+            <td class="text-center">{{ asso.besoinTotal }}</td>
+            <td class="text-center">{{ asso.enseignement.duree }}</td>
+            <td class="text-center">{{ asso.besoinClasseEntiere }}</td>
+            <td class="text-center">{{ asso.besoinClasseDedoublee }}</td>
+            <td class="text-center">{{ asso.besoinClasseDetriplee }}</td>
+            <td class="text-center {{ maClasse }}">{{ asso.dureeRepartie }}</td>
+            <td> <a href={{ path( 'o_fort_prerentree_repartition_add', { 'assoId': asso.id} )}} class="aIcon"><i class="fa fa-arrows-alt fa-lg" title ="Répartir"></i></a></td>
+          </tr>
+          {% set maClasse = 'warning' %}
+        {% endfor %}
+      </table>
+    </div>

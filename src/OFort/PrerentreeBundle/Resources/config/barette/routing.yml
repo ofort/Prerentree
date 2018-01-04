@@ -1,0 +1,25 @@
+
+o_fort_prerentree_barette_add:
+    path:   /add/
+    defaults:
+        _controller: OFortPrerentreeBundle:Barette:add
+
+o_fort_prerentree_barette:
+    path:   /
+    defaults:
+        _controller: OFortPrerentreeBundle:Barette:index
+
+o_fort_prerentree_barette_view:
+    path:   /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Barette:view
+
+o_fort_prerentree_barette_addDivision:
+    path:   /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Barette:addDivision
+
+o_fort_prerentree_barette_modifiy:
+    path: /modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Barette:modify

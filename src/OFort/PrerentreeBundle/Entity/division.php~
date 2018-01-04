@@ -77,6 +77,31 @@ class division
 
     /**
      *
+     * @ORM\ManyToOne(targetEntity="maquette")
+     */
+    private $maquetteOld;
+
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="niveauFormation", inversedBy="divisions")
+     */
+    private $niveauFormation;
+
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="barette")
+     */
+    private $barettes;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="filiere", inversedBy="divisions")
+     */
+    private $filiere;
+
+    /**
+     *
      * @ORM\OneToMany(targetEntity="association", mappedBy="division")
      */
     private $associations;
@@ -261,12 +286,19 @@ class division
     {
         return $this->maquette;
     }
+
+    public function deleteMaquette(){
+        $this->maquette = null;
+        return $this;
+    }
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->repartitions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->classeChecked = false;
     }
     /**
      * Add association
@@ -308,5 +340,227 @@ class division
             $this->besoinTotal += $asso->getBesoinTotal();
         }
         return $this->besoinTotal;
+    }
+
+    /**
+     * Set classeChecked
+     *
+     * @param boolean $classeChecked
+     *
+     * @return division
+     */
+    public function setClasseChecked($classeChecked)
+    {
+        $this->classeChecked = $classeChecked;
+
+        return $this;
+    }
+
+    /**
+     * Get classeChecked
+     *
+     * @return boolean
+     */
+    public function getClasseChecked()
+    {
+        return $this->classeChecked;
+    }
+
+    /**
+     * Add enseignement
+     *
+     * @param \OFort\PrerentreeBundle\Entity\enseignement $enseignement
+     *
+     * @return division
+     */
+    public function addEnseignement(\OFort\PrerentreeBundle\Entity\enseignement $enseignement)
+    {
+        $this->enseignements[] = $enseignement;
+
+        return $this;
+    }
+
+    /**
+     * Remove enseignement
+     *
+     * @param \OFort\PrerentreeBundle\Entity\enseignement $enseignement
+     */
+    public function removeEnseignement(\OFort\PrerentreeBundle\Entity\enseignement $enseignement)
+    {
+        $this->enseignements->removeElement($enseignement);
+    }
+
+    /**
+     * Get enseignements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEnseignements()
+    {
+        return $this->enseignements;
+    }
+
+    /**
+     * Set assoBarette
+     *
+     * @param \OFort\PrerentreeBundle\Entity\assoBarette $assoBarette
+     *
+     * @return division
+     */
+    public function setAssoBarette(\OFort\PrerentreeBundle\Entity\assoBarette $assoBarette = null)
+    {
+        $this->assoBarette = $assoBarette;
+
+        return $this;
+    }
+
+    /**
+     * Get assoBarette
+     *
+     * @return \OFort\PrerentreeBundle\Entity\assoBarette
+     */
+    public function getAssoBarette()
+    {
+        return $this->assoBarette;
+    }
+
+    /**
+     * Add barette
+     *
+     * @param \OFort\PrerentreeBundle\Entity\barette $barette
+     *
+     * @return division
+     */
+    public function addBarette(\OFort\PrerentreeBundle\Entity\barette $barette)
+    {
+        $this->barettes[] = $barette;
+
+        return $this;
+    }
+
+    /**
+     * Remove barette
+     *
+     * @param \OFort\PrerentreeBundle\Entity\barette $barette
+     */
+    public function removeBarette(\OFort\PrerentreeBundle\Entity\barette $barette)
+    {
+        $this->barettes->removeElement($barette);
+    }
+
+    /**
+     * Get barettes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBarettes()
+    {
+        return $this->barettes;
+    }
+
+    /**
+     * Add filiere
+     *
+     * @param \OFort\PrerentreeBundle\Entity\filiere $filiere
+     *
+     * @return division
+     */
+    public function addFiliere(\OFort\PrerentreeBundle\Entity\filiere $filiere)
+    {
+        $this->filieres[] = $filiere;
+
+        return $this;
+    }
+
+    /**
+     * Remove filiere
+     *
+     * @param \OFort\PrerentreeBundle\Entity\filiere $filiere
+     */
+    public function removeFiliere(\OFort\PrerentreeBundle\Entity\filiere $filiere)
+    {
+        $this->filieres->removeElement($filiere);
+    }
+
+    /**
+     * Get filieres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFilieres()
+    {
+        return $this->filieres;
+    }
+
+    /**
+     * Set niveauFormation
+     *
+     * @param \OFort\PrerentreeBundle\Entity\niveauFormation $niveauFormation
+     *
+     * @return division
+     */
+    public function setNiveauFormation(\OFort\PrerentreeBundle\Entity\niveauFormation $niveauFormation = null)
+    {
+        $this->niveauFormation = $niveauFormation;
+
+        return $this;
+    }
+
+    /**
+     * Get niveauFormation
+     *
+     * @return \OFort\PrerentreeBundle\Entity\niveauFormation
+     */
+    public function getNiveauFormation()
+    {
+        return $this->niveauFormation;
+    }
+
+    /**
+     * Set filiere
+     *
+     * @param \OFort\PrerentreeBundle\Entity\filiere $filiere
+     *
+     * @return division
+     */
+    public function setFiliere(\OFort\PrerentreeBundle\Entity\filiere $filiere = null)
+    {
+        $this->filiere = $filiere;
+
+        return $this;
+    }
+
+    /**
+     * Get filiere
+     *
+     * @return \OFort\PrerentreeBundle\Entity\filiere
+     */
+    public function getFiliere()
+    {
+        return $this->filiere;
+    }
+
+    /**
+     * Set maquetteOld
+     *
+     * @param \OFort\PrerentreeBundle\Entity\maquette $maquetteOld
+     *
+     * @return division
+     */
+    public function setMaquetteOld(\OFort\PrerentreeBundle\Entity\maquette $maquetteOld = null)
+    {
+        $this->maquetteOld = $maquetteOld;
+
+        return $this;
+    }
+
+    /**
+     * Get maquetteOld
+     *
+     * @return \OFort\PrerentreeBundle\Entity\maquette
+     */
+    public function getMaquetteOld()
+    {
+        return $this->maquetteOld;
     }
 }

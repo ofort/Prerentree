@@ -1,0 +1,36 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Liste des divisions - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+<div class="row">
+    <div>
+        <a href=" {{ path('o_fort_prerentree_division_add') }}"> Ajouter une division</a>
+    </div> 
+    <h4>Liste des Divisions</h4>
+
+    <table class="table table-responsive table-hover table-condensed">
+    	<tr>
+    		<td>Id</td>
+            <td></td>
+    		<td>Nom de la division</td>
+            <td>Structure</td>
+            <td>Filière</td>
+            <td>niveau</td>
+    	</tr>
+    	{% for div in divisions %}
+    		<tr>
+    			<td>{{ div.id }}</td>
+                <td><a href="{{ path('o_fort_prerentree_division_del', {'id': div.id} ) }}"><i class="material-icons">delete</i></a></td>
+    			<td><a href="{{ path('o_fort_prerentree_division_view', {'id': div.id} ) }}" title="{{ div.nom }}">{{ div.nomCourt }}</a></td>
+                <td><a href="{{ path('o_fort_prerentree_struct', {'id': div.niveauFormation.structure.id} ) }}">{{ div.niveauFormation.structure.nom }}</a></td>
+                <td><a href="{{ path('o_fort_prerentree_niveauFormation_view', {'id': div.niveauFormation.id }) }}">{{ div.niveauFormation.nom }}</a></td>
+    		</tr>
+    	{% endfor %}
+    </table>
+
+</div>
+{% endblock %}

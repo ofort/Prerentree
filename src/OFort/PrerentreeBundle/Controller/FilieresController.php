@@ -16,8 +16,7 @@
 
 	class FilieresController extends Controller
 	{
-		public function indexAction()
-		{
+		public function indexAction() {
 			
 		 	$em = $this->getDoctrine()->getManager();
 
@@ -31,12 +30,8 @@
 		 	return $this->render('OFortPrerentreeBundle:Filieres:indexFiliere.html.twig',
 		 				array('filieres' => $filieres ));
 		}
-
-//**********************************************************************
-
 		
-		public function viewAction($id)
-		{
+		public function viewAction($id) {
 			$filiere = new filiere;
 			$em = $this->getDoctrine()->getManager(); 
 			$repository = $this
@@ -49,10 +44,7 @@
 			array('filiere' => $filiere ));
 		}
 
-//*************************
-
-		public function addAction(Request $request, $idStructure)
-		{
+		public function addAction(Request $request) {
 			$filiere = new filiere;
 			// createFormBuilder is a shortcut to get the "form factory"
 			// and then call "createBuilder()" on it
@@ -60,10 +52,6 @@
 				->getDoctrine()
 				->getManager()
 				->getRepository('OFortPrerentreeBundle:structure');
-
-			$structure = $repository->find($idStructure);
-
-			$filiere->setIdStructure($structure);
 
 			$form = $this->get('form.factory')->create(FiliereType::class, $filiere);
 
@@ -84,19 +72,14 @@
 
 						// ... perform some action, such as saving the data to the database
 						//$response->prepare($request);
-						return $this->redirectToRoute(
-							'o_fort_prerentree_struct',
-							array('id' => $filiere->getIdStructure()->getId()
-						));
+						return $this->redirectToRoute('o_fort_prerentree_filiere');
 					}
 				}
 			return $this->render('OFortPrerentreeBundle:Filieres:add.html.twig', array(
-				'idStructure' => $idStructure,
 				'form' => $form->createView(),
 			));
 		}
 
-//******************************
 
 		public function modifyAction($id, Request $request)
 		{
@@ -130,7 +113,6 @@
 		 			}
 		 	}
 		 	return $this->render('OFortPrerentreeBundle:Filieres:add.html.twig', array(
-				'idStructure' => $filiere->getIdStructure()->getId(),
 			 	'form' => $form->createView(),
 		 	));
 

@@ -1,0 +1,35 @@
+
+o_fort_prerentree_enseignement_add:
+    path:   /add/{idMaquette}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:add
+
+o_fort_prerentree_enseignement_addForBarette:
+    path:   /addForBarette/{idBarette}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:addForBarette
+
+o_fort_prerentree_enseignement_view:
+    path:  /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:view
+
+o_fort_prerentree_enseignement_modify:
+    path:  /modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:modify
+
+o_fort_prerentree_enseignement_addDivision:
+    path:   /addDivision/{idDivision}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:addDivision
+
+o_fort_prerentree_enseignement_del:
+    path:  /del/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:del
+
+o_fort_prerentree_enseignement_confirmDel:
+    path:  /confirmDel/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Enseignement:confirmDel

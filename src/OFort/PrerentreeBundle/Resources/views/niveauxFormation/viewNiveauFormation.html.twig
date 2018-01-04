@@ -1,0 +1,50 @@
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+{% block title %}
+	View Niveau - {{ parent() }}
+{% endblock %}
+{% block ofortprerentree_body %}
+	
+	{% block head %}Niveau de formation{% endblock %}
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="alert alert-success" role="alert">
+				<a href="#{#{{ path('o_fort_prerentree_niveau_modify', {'id' : niveau.id}) }}#}">Modifier</a>
+			</div>
+		</div>
+	</div>
+	<p>
+		<a href="{{ path('o_fort_prerentree_struct', {'id':niveauFormation.Structure.id}) }}">
+			{{niveauFormation.Structure.nom}}
+		</a>
+		/{{ niveauFormation.nom }}
+		
+	</p>
+	<div class="row">
+		<h3>Détail</h3>
+		<table class="table table-striped">
+			<tr>
+				<td>Nom</td>
+				<td>{{niveauFormation.nom|e}}</td>
+			</tr>
+			<tr>
+				<td>Structure</td>
+				<td>{{ niveauFormation.structure.nom|e}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="row">
+		<h3>Divisions</h3>
+		<table class="table table-striped" width="70%">
+			{% for div in niveauFormation.divisions %}
+				<tr>
+					<td title="{{div.nom}}"><a href="{{path('o_fort_prerentree_division_view', {id: div.id})}}"> {{div.nomCourt}}</a></td>
+					<td title="{{div.filiere.nom}}">{{div.filiere.nomCourt}}</td>
+					<td>{{div.besoinTotal}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<div>
+		<a href=" {{ path('o_fort_prerentree_division_addForNiveau', {'idNiveau': niveauFormation.id}) }}"> Ajouter une division à ce niveau</a>
+	</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  Supprimer un enseignement - {{ parent() }}
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  {% block head %}Supprimer un enseignement{% endblock %}
+
+	<div class="alert alert-danger" role="alert">
+		Confirmer la suppression de l'enseignement' {{ enseignement.nom}}
+	</div>
+  <button type="button" class="btn btn-danger"><a href="{{ path('o_fort_prerentree_enseignement_confirmDel', {'id': enseignement.id}) }}">Je confirme</a></button>
+  <button type="button" class="btn btn-success"><a href="{{ path('o_fort_prerentree_maquette_view', {'id' : enseignement.maquette.id}) }}">Non surtout pas !</a></button>
+  
+
+
+{% endblock %}

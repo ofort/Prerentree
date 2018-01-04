@@ -2,98 +2,52 @@
 {% block title %}
 	Liste des structures - {{ parent() }}
 {% endblock %}
-{% block ofortprerentree_body %}
-	<h2>Vue de la Maquette {{maquette.id}} : <br> {{maquette.nom}}</h2>
+		{% block head %}{{maquette.nom}}<br> <span class="small"> Maquette </span>{% endblock %}
 
-	<div class="row">	
-	<div class="col-sm-6">
-		<div class="alert alert-success" role="alert">
-			<a href="{{ path('o_fort_prerentree_maquette_modify', {'id': maquette.id }) }}">Modifier la maquette</a>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<div class="alert alert-success" role="alert">
-			<a href="{{ path('o_fort_prerentree_maquette') }}">Retour à la liste</a>
-		</div>
-	</div>
-	<h3>Détail de la maquette</h3>
-	</div>	
-		<table class="table table-striped">
-			<tr>
-				<td>Commentaire</td>
-				<td>{{maquette.commentaire}}</td>
-			</tr>
-		</table>
+		{% block ofortprerentree_body %}
 
-		<div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="alert alert-success" role="alert">
+						<a href="{{ path('o_fort_prerentree_maquette_modify', {'id': maquette.id }) }}">Modifier la maquette</a>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="alert alert-success" role="alert">
+						<a href="{{ path('o_fort_prerentree_maquette') }}">Retour à la liste</a>
+					</div>
+				</div>
+				<h3>Détail de la maquette</h3>
+			</div>
 
 			<h5>Total des besoins pour la maquette :</h5>
-			<ul>
-				<li>Classe simple : {{ maquette.besoinSimple}} heures</li>
-				<li>Classe dédoulée : {{ maquette.besoinDedouble }}</li>
-				<li>Classe détriplée : {{ maquette.besoinDetriple }}</li>
+			<ul class="list-unstyled">
+				<li>Classe simple : {{ maquette.besoinSimple + maquette.besoinCoanimation }} heures</li>
+				<li>Classe dédoulée : {{ maquette.besoinDedouble + maquette.besoinCoanimation }} heures</li>
+				<li>Classe détriplée : {{ maquette.besoinDetriple + maquette.besoinCoanimation }} heures</li>
+				<li>Dont durée coanimée : {{ maquette.besoinCoanimation }} heures</li>
 			</ul>
 			
 			<h3>Enseignements constituant la maquette</h3>
 			<p>Durées en heures</p>
-			<table class="table table-striped ">
-				<thead>
-					<tr>
-						<td class="small">N°</td>
-						<td></td>
-						<td class="small">Intitulé</td>
-						<td class="small">classe </td>
-						<td class="small text-right">Durée classe entière</td>
-						<td class="small text-right">Dedoublement</td>
-						<td class="small text-right">Détriplement</td>
-						<td class="small text-right">Total</td>
-					</tr>
-				</thead>
-				<tbody>
-					{% for ens in maquette.enseignements %}	
-						<tr>
-							<td class="small" rowspan="3">{{loop.index}}</td>
-							<td class="small"  rowspan="3">
-								<div class="dropdown">
-  									<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
- 									   Action
-									</button>
-								    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								    	<a class="dropdown-item" href="#">Supprimer</a>
-								    	<a class="dropdown-item" href="{{ path('o_fort_prerentree_enseignement_modify', {id: ens.id}) }}">Modifier</a>
-								    	<a class="dropdown-item" href="{{ path('o_fort_prerentree_enseignement_view', {'id': ens.id}) }}">Voir</a>
-								  </div>
-								</div>
-							</td>
-							<td class="small" rowspan="3"><a href="{{ path('o_fort_prerentree_enseignement_view', {'id': ens.id}) }}">{{ ens.nom }}</a></td>
-							<td class="small">Simple</td>
-							<td class="small text-right">{{ ens.duree }}</td>
-							<td></td>
-							<td></td>
-							<td class="small text-right">{{ ens.duree }}</td>
-						</tr>
-						<tr>
-							<td class="small">Dédoublée</td>
-							<td class="small text-right">{{ ens.duree - ens.dureeDedoublee }}</td>
-							<td class="small text-right">{{ ens.dureeDedoublee }}</td>
-							<td class="small text-right"></td>
-							<td class="small text-right">{{ ens.duree + ens.dureeDedoublee}}</td>
-						</tr>
-						<tr>
-							<td class="small">Détriplée</td>
-							<td class="small text-right">{{ ens.duree - ens.dureeDedoublee }}</td>
-							<td class="small text-right">{{ ens.dureeDedoublee - ens.dureeDetriplee }}</td>
-							<td class="small text-right">{{ ens.dureeDetriplee }}</td>
-							<td class="small text-right">{{ ens.duree + ens.dureeDedoublee + ens.dureeDetriplee}}</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
 
+			<div>
+				<a href=" {{ path('o_fort_prerentree_enseignement_add', {'idMaquette': maquette.id}) }} ">
+					Ajouter un enseignement à la maquette {{maquette.id }}
+				</a>
+			</div>
+{# liste des enseignement de la maquettes #}
+{{ include("OFortPrerentreeBundle:Maquettes:listeEnseignements.html.twig")}}
 
-		</div>
+<h3>Divisions utilisant la maquette</h3>
+{# liste des division qui utilisent la maquette #}
+{{ include("OFortPrerentreeBundle:Maquettes:listeDivisions.html.twig")}}
+	
+	<div class="row">
+		<a href=" {{ path('o_fort_prerentree_enseignement_add', {'idMaquette': maquette.id}) }} "> Ajouter un enseignement à la maquette {{maquette.id }}</a>
+	</div>
+	
+	<div class="row">
 		
-		<div>
-			<a href=" {{ path('o_fort_prerentree_enseignement_add', {'idMaquette': maquette.id}) }} "> Ajouter un enseignement à la maquette {{maquette.id }}</a>
-		</div>
-	{% endblock %}
+	</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+{% block title %} {{discipline.intitule|e}} - {{ parent() }} {% endblock %}
+{% block ofortprerentree_body %}
+	<div class="container">
+		{% block head %} {{discipline.intitule|e}}({{discipline.code|e}}) <span class="small">Discipline</span>{% endblock %}
+		<div class="row">
+			<h4>Enseignements</h4>
+			{% set dureeTotale = 0 %}
+			<table class="table table-condensed table-responsive table-hover">
+				<tbody>
+					{% for repart in discipline.repartitions %}
+						{% set dureeTotale = dureeTotale + repart.duree %}
+						{% if repart.association is not null %}
+							<tr>
+								{% set structure = repart.association.division.niveauFormation.structure %}
+								<td title=" Rentrée {{ structure.rentree }}">
+									<a href=" {{ path('o_fort_prerentree_struct', {'id': structure.id}) }}">
+										{{ structure.nom }}
+									</a>
+								</td>
+								{% set division = repart.association.division%}
+								<td title="{{ division.nom|e }}">
+									<a href="{{ path('o_fort_prerentree_division_view', {'id': division.id}) }}">
+										{{ division.nomCourt|e }}
+									</a>
+								</td>
+								<td>
+									{% set enseignement = repart.association.enseignement%}
+									<a href="{{ path('o_fort_prerentree_enseignement_view', {'id': enseignement.id}) }}">
+										{{ enseignement.nom|e }}
+									</a>
+								</td>
+								<td>
+									{{ repart.duree|e }} heure{% if repart.duree > 1 %}s{% endif %}
+								</td>
+								<td>Supprimer</td>
+							</tr>
+						{% endif %}
+						{% if repart.barette is not null %}
+							<tr>
+								<td>
+									
+								</td>
+								<td>{{repart.barette.nom}}</td>
+								<td>
+									
+								</td>
+								<td>
+									{{ repart.duree|e }} heure{% if repart.duree > 1 %}s{% endif %}
+								</td>
+								<td>Supprimer</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="well well-xs" >
+				<p class="lead text-center"> Besoin dans la discipline {{ discipline.intitule }} : {{ dureeTotale }} heure(s)</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

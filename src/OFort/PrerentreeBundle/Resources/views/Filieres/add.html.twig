@@ -7,7 +7,7 @@
 
 {% block ofortprerentree_body %}
 
-  <h2>Ajouter une filiere à la structure {{ idStructure }}</h2>
+  {% block head %}Ajouter une filiere à la structure{% endblock %}
 
   {{ include("OFortPrerentreeBundle:filieres:form.html.twig") }}
 

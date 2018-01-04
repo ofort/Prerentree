@@ -6,17 +6,14 @@
 	use Symfony\Component\HttpFoundation\Request;
 	use OFort\PrerentreeBundle\Entity\maquette;
 	use OFort\PrerentreeBundle\Entity\enseignement;
+	use OFort\PrerentreeBundle\Entity\association;
+	use OFort\PrerentreeBundle\Entity\division;
 
 	use OFort\PrerentreeBundle\Form\maquetteType;
 
 	class MaquetteController extends Controller
 	{
-		
-//*******************
-
-		
-		public function viewAction($id)
-		{
+		public function viewAction($id) {
 			$maquette = new maquette;
 			$em = $this->getDoctrine()->getManager(); 
 			$repository = $em
@@ -28,8 +25,7 @@
 			array('maquette' => $maquette));
 		}
 
-		public function modifyAction(Request $request, $id)
-		{
+		public function modifyAction(Request $request, $id) {
 			$maquette = new maquette;
 
 			$repo = $this->getDoctrine()
@@ -65,13 +61,9 @@
 			return $this->render('OFortPrerentreeBundle:Maquettes:addMaquette.html.twig', array(
 			'form' => $form->createView(),
 			));
-
 		}
 
-//**********************
-
-		public function addAction(Request $request)
-		{
+		public function addAction(Request $request){
 			$maquette = new maquette;
 			// createFormBuilder is a shortcut to get the "form factory"
 			// and then call "createBuilder()" on it
@@ -105,8 +97,7 @@
 			));
 		}
 
-		public function indexAction(request $request)
-		{
+		public function indexAction(request $request) {
 			$repo = $this->getDoctrine()->getManager()->getRepository('OFortPrerentreeBundle:maquette');
 			$maquettes = $repo->findall();
 
@@ -115,8 +106,7 @@
 
 		}
 
-		public function delAction(request $request, $id)
-		{
+		public function delAction(request $request, $id) {
 
 			$repo = $this->getDoctrine()->getManager()->getRepository('OFortPrerentreeBundle:maquette');
 			$maquette = $repo->find($id);
@@ -125,17 +115,51 @@
 						array('maquette' => $maquette ));				
 		}
 
-		public function confirmDelAction(request $request, $id)
-		{
+		public function confirmDelAction(request $request, $id) {
 
 			$em = $this->getDoctrine()->getManager();
 			$repo = $em->getRepository('OFortPrerentreeBundle:maquette');
 			$maquette = $repo->find($id);
+			foreach ($maquette->getDivisions() as $div) {
+				$div->deleteMaquette();
+				$maquette->removeDivision($div);
+			}
 			$em->remove($maquette);
 			$em->flush();
 
 			return $this->redirectToRoute('o_fort_prerentree_maquette');			
 		}
 
-		
+		public function copyAction(request $request, $id) {
+			$maquetteNew = new maquette;
+			$em = $this->getDoctrine()->getManager();
+			$repo = $em->getrepository('OFortPrerentreeBundle:maquette');
+			$maquette = $repo->find($id);
+
+			$maquetteNew->setNom("copie de " . $maquette->getNom());
+
+			foreach ($maquette->getEnseignements() as $enseignement) {
+				$enseignementNew = new enseignement;
+				$enseignementNew->setNom($enseignement->getNom());
+				$enseignementNew->setDuree($enseignement->getDuree());
+				$enseignementNew->setDureeDedoublee($enseignement->getDureeDedoublee());
+				$enseignementNew->setDureeDetriplee($enseignement->getDureeDetriplee());
+				$enseignementNew->setDureeCoanimee($enseignement->getDureeCoanimee());
+				$enseignementNew->setNbDisciplinesCoanimation($enseignement->getNbDisciplinesCoanimation());
+				$enseignementNew->setMaquette($maquetteNew);
+
+				$em->persist($enseignementNew);
+				
+			}
+			$maquetteNew->setEnseignements($maquette->getEnseignements());
+
+			$em->persist($maquetteNew);
+			$em->flush();
+
+			$maquettes = $repo->findAll();
+			return $this->render('OFortPrerentreeBundle:Maquettes:indexMaquette.html.twig',
+						array('maquettes' => $maquettes ));
+
+		}
 	}
+?>

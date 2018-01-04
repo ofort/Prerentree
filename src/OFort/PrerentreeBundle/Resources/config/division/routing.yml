@@ -1,0 +1,34 @@
+o_fort_prerentree_division_addForNiveau:
+    path:   /add/{idNiveau}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:addForLevel
+
+o_fort_prerentree_division_add:
+    path:   /add
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:add
+
+o_fort_prerentree_division_view:
+    path:   /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:view
+
+o_fort_prerentree_division_modify:
+    path:   /modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:modify
+        
+o_fort_prerentree_division_del:
+    path:  /del/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:del
+
+o_fort_prerentree_division_confirmDel:
+    path:  /confirmDel/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:confirmDel
+
+o_fort_prerentree_division:
+    path:   /
+    defaults:
+        _controller: OFortPrerentreeBundle:Division:index
