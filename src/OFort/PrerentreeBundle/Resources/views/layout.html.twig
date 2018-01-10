@@ -1,19 +1,14 @@
 
 {% extends "OFortCoreBundle::layout.html.twig" %}
 
-{% block title %}
-  Prérentree - {{ parent() }}
-{% endblock %}
+{% block title %}{{ parent() }}{% endblock %} 
 
+  {% block head %}
+  	{{ parent() }} <small>Préparation de la rentrée</small>
+  {% endblock %}
+ 
 {% block body %}
 
-  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
-  <h2>Préparation de la rentrée</h2>
-
-  <hr>
-
-  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
-  {% block ofortprerentree_body %}
-  {% endblock %}
+  {% block ofortprerentree_body %}  {% endblock %}
 
 {% endblock %}

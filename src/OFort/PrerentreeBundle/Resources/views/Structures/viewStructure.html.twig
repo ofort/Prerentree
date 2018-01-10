@@ -3,26 +3,22 @@
 	Liste des structures - {{ parent() }}
 {% endblock %}
 {% block ofortprerentree_body %}
-	<h2>Vue de la structure {{struct.id}} {{struct.nom}}</h2>
-
-	<div class="row">	
-	<div class="col-sm-4">
-		<div class="alert alert-success" role="alert">
-			<a href="{{ path('o_fort_prerentree_struct_modify', {'id': struct.id }) }}">Modifier la structure</a>
+	{% block head %}{{struct.nom}} <span class="small">structure</span>{% endblock %}
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="alert alert-success" role="alert">
+				<a href="{{ path('o_fort_prerentree_struct_modify', {'id': struct.id }) }}">Modifier la structure</a>
+			</div>
 		</div>
-	</div>
-	<div class="col-sm-4">
-		<div class="alert alert-success" role="alert">
-			<a href="{{ path('o_fort_prerentree_structure') }}">Retour à la liste</a>
+		<div class="col-sm-4">
+			<div class="alert alert-success" role="alert">
+				<a href="{{ path('o_fort_prerentree_structure') }}">Retour à la liste</a>
+			</div>
 		</div>
+		<h3>Détails</h3>
 	</div>
-	<h3>Détail de la structure</h3>
-	</div>	
+	<div class="row">
 		<table class="table table-striped">
-			<tr>
-				<td>Commentaire</td>
-				<td>{{struct.commentaire}}</td>
-			</tr>
 			<tr>
 				<td>Version</td>
 				<td>{{struct.version}}</td>
@@ -36,23 +32,21 @@
 				<td>{{struct.dateCreation|date('d-m-Y')}}</td>
 			</tr>
 		</table>
-
-		<div>
-			<h3>Filières de la structure</h3>
-
-			<ul class="list-group">
-				{% for fi in struct.filieres %}
-					<li  class="list-group-item">
-						<strong>{{loop.index}}
-							<a href="{{ path('o_fort_prerentree_filiere_view', {'id': fi.id}) }}">{{ fi.nom }}</a>  &nbsp
-						</strong>
-						({{ fi.nomCourt }})
-					</li>
-				{% endfor %}
-			</ul>
-		</div>
-		
-		<div>
-			<a href=" {{ path('o_fort_prerentree_filiere_add', {'idStructure': struct.id}) }}"> Ajouter une filière à la structure</a>
-		</div>
-	{% endblock %}
+	</div>
+	<div>
+		<h3>Niveaux de formation</h3>
+		<ul class="list-group">
+			{% for niFor in struct.niveauxFormation %}
+				<li  class="list-group-item">
+					<strong>{{loop.index}}
+						<a href="{{ path('o_fort_prerentree_niveauFormation_view', {'id': niFor.id}) }}">{{ niFor.nom }}</a>  &nbsp
+					</strong>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	
+	<div class="row">
+		<a href=" {{ path('o_fort_prerentree_niveauFormation_addForStructure', {'idStructure': struct.id}) }}"> Ajouter un niveau de formation à la structure</a>
+	</div>
+{% endblock %}

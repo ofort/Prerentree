@@ -8,6 +8,11 @@ o_fort_prerentree_discipline:
     defaults:
         _controller: OFortPrerentreeBundle:Discipline:index
 
+o_fort_prerentree_discipline_view:
+    path: /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Discipline:view
+
 o_fort_prerentree_discipline_modifiy:
     path: /modify/{id}
     defaults:

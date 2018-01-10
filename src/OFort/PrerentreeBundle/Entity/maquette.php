@@ -49,12 +49,11 @@ class maquette
      * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     private $divisions;
-
+    
     private $besoinSimple;
-
     private $besoinDedouble;
-
     private $besoinDetriple;
+    private $besoinCoanimation;
 
 
     /**
@@ -215,14 +214,21 @@ class maquette
         return $this->besoinDedouble;
     }
 
-    public function getBesoinDetriple()
-    {
+    public function getBesoinDetriple() {
         $this->besoinDetriple = 0;
         foreach ($this->enseignements as $ens) {
             $this->besoinDetriple += $ens->getDuree() + $ens->getDureededoublee() + $ens->getDureedetriplee();
         }
 
         return $this->besoinDetriple;
+    }
+
+    public function getBesoinCoanimation() {
+        $this->besoinCoanimation = 0;
+        foreach ($this->enseignements as $ens) {
+            $this->besoinCoanimation += $ens->getDureeCoanimee()*$ens->getNbDisciplinesCoanimation();
+        }
+        return $this->besoinCoanimation;
     }
 
     /**

@@ -1,0 +1,29 @@
+o_fort_prerentree_structure:
+    path:     /
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:index
+
+o_fort_prerentree_struct_add:
+    path:     /add
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:add
+
+o_fort_prerentree_struct_modify:
+    path:     /modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:modify
+
+o_fort_prerentree_struct:
+    path:     /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:view
+
+o_fort_prerentree_struct_del:
+    path:     /del/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:del
+
+o_fort_prerentree_struct_confirmdel:
+    path:     /confirmdel/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Structures:confirmDel

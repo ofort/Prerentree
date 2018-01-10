@@ -10,8 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="association")
  * @ORM\Entity(repositoryClass="OFort\PrerentreeBundle\Repository\associationRepository")
  */
-class association
-{
+class association {
     /**
      * @var int
      *
@@ -133,8 +132,9 @@ class association
         if ($this->division->getClassededoublee()) {
             if (!($this->division->getClasseDetriplee())) {
                 $this->besoinClasseDedoublee += $this->getEnseignement()->getDureeDedoublee();
-            }else{
-                 $this->besoinClasseDedoublee += (  $this->getEnseignement()->getDureeDedoublee()
+            }
+            else {
+                 $this->besoinClasseDedoublee += ( $this->getEnseignement()->getDureeDedoublee()
                      - $this->getEnseignement()->getDureeDetriplee());              
             }
         }
@@ -145,7 +145,7 @@ class association
     public function getbesoinClasseDetriplee(){
         $this->besoinClasseDetriplee = 0;
         if ($this->division->getClassedetriplee()) {
-            $this->besoinClasseDetriplee += $this->getEnseignement()->getDureeDetriplee();
+            $this->besoinClasseDetriplee =   $this->getEnseignement()->getDureeDetriplee();
         }
         return $this->besoinClasseDetriplee;
     }
@@ -160,13 +160,14 @@ class association
     }
 
     public function getBesoinTotal() {
-        $this->besoinTotal = $this->getEnseignement()->getDuree()
+        $enseignement = $this->getEnseignement();
+        $this->besoinTotal = $enseignement->getDuree()
                            + $this->getBesoinClasseDedoublee()
-                           + $this->getBesoinClasseDetriplee()*2;
+                           + $this->getBesoinClasseDetriplee()*2
+                           + $enseignement->getDureeCoanimee()*$enseignement->getNbDisciplinesCoanimation();
         return $this->besoinTotal;
     }
-
-
+    
     /**
      * Set enseignement
      *
@@ -249,3 +250,4 @@ class association
         return $this->dureeRepartie;
     }
 }
+?>

@@ -154,4 +154,35 @@ class discipline
     {
         return $this->repartitions;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->repartitions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add repartition
+     *
+     * @param \OFort\PrerentreeBundle\Entity\repartition $repartition
+     *
+     * @return discipline
+     */
+    public function addRepartition(\OFort\PrerentreeBundle\Entity\repartition $repartition)
+    {
+        $this->repartitions[] = $repartition;
+
+        return $this;
+    }
+
+    /**
+     * Remove repartition
+     *
+     * @param \OFort\PrerentreeBundle\Entity\repartition $repartition
+     */
+    public function removeRepartition(\OFort\PrerentreeBundle\Entity\repartition $repartition)
+    {
+        $this->repartitions->removeElement($repartition);
+    }
 }

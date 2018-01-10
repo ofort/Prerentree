@@ -1,0 +1,45 @@
+<div id="enseignements">
+		<table class="table table-striped ">
+			<thead>
+				<tr>
+					<th class="small">N°</th>
+					<th></th>
+				<th>Intitulé</td>
+				<th class="text-right">Durée élève</th>
+				<th class="text-right">Dedoublement</th>
+				<th class="text-right">Détriplement</th>
+				<th class="text-right">Co-animation</th>
+				<th class="text-right">Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ens in maquette.enseignements %}
+				<tr>
+					<td class="small">{{loop.index}}</td>
+					<td class="small">
+						<div class="dropdown">
+							<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Action
+							</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item" href="#">Supprimer</a>
+								<a class="dropdown-item" href="{{ path('o_fort_prerentree_enseignement_modify', {id: ens.id}) }}">Modifier</a>
+								<a class="dropdown-item" href="{{ path('o_fort_prerentree_enseignement_view', {'id': ens.id}) }}">Voir</a>
+							</div>
+						</div>
+					</td>
+					<td>
+						<a href="{{ path('o_fort_prerentree_enseignement_view', {'id': ens.id}) }}">
+							{{ ens.nom }}
+						</a>
+					</td>
+					<td class="text-right">{{ ens.duree }}</td>
+					<td class="text-right">{{ ens.dureeDedoublee }}</td>
+					<td class="text-right">{{ ens.dureeDetriplee }}</td>
+					<td class="text-right">{{ ens.dureeCoanimee}}</td>
+					<td class="text-right">{{ ens.nbDisciplinesCoanimation }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

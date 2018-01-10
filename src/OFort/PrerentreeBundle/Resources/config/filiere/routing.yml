@@ -1,0 +1,29 @@
+o_fort_prerentree_filiere_add:
+    path:     /add
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:add
+
+o_fort_prerentree_filiere_view:
+    path:     /{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:view
+
+o_fort_prerentree_filiere:
+    path:     /
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:index
+
+o_fort_prerentree_filiere_modify:
+    path:     /modify/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:modify
+
+o_fort_prerentree_filiere_del:
+    path:  /del/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:del
+
+o_fort_prerentree_filiere_confirmDel:
+    path:  /confirmDel/{id}
+    defaults:
+        _controller: OFortPrerentreeBundle:Filieres:confirmDel

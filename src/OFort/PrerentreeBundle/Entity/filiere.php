@@ -43,16 +43,20 @@ class filiere
     private $commentaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity="structure", inversedBy="filieres")
-     */
-     private $idStructure;
-
-     /**
      * @ORM\OneToMany(targetEntity="niveau", mappedBy="Filiere")
      * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
-     private $niveaux;
+    private $niveaux;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="niveauFormation", mappedBy="filieres")
+     */
+    private $niveauxFormation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="division", mappedBy="filiere")
+     */
+    private $divisions;
 
     /**
      * Get id
@@ -86,30 +90,6 @@ class filiere
     public function getNom()
     {
         return $this->nom;
-    }
-
-    /**
-     * Set idStructure
-     *
-     * @param integer $idStructure
-     *
-     * @return filiere
-     */
-    public function setIdStructure($idStructure)
-    {
-        $this->idStructure = $idStructure;
-
-        return $this;
-    }
-
-    /**
-     * Get idStructure
-     *
-     * @return integer
-     */
-    public function getIdStructure()
-    {
-        return $this->idStructure;
     }
 
     /**
@@ -199,5 +179,73 @@ class filiere
     public function getNiveaux()
     {
         return $this->niveaux;
+    }
+
+    /**
+     * Add niveauxFormation
+     *
+     * @param \OFort\PrerentreeBundle\Entity\niveauFormation $niveauxFormation
+     *
+     * @return filiere
+     */
+    public function addNiveauxFormation(\OFort\PrerentreeBundle\Entity\niveauFormation $niveauxFormation)
+    {
+        $this->niveauxFormation[] = $niveauxFormation;
+
+        return $this;
+    }
+
+    /**
+     * Remove niveauxFormation
+     *
+     * @param \OFort\PrerentreeBundle\Entity\niveauFormation $niveauxFormation
+     */
+    public function removeNiveauxFormation(\OFort\PrerentreeBundle\Entity\niveauFormation $niveauxFormation)
+    {
+        $this->niveauxFormation->removeElement($niveauxFormation);
+    }
+
+    /**
+     * Get niveauxFormation
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNiveauxFormation()
+    {
+        return $this->niveauxFormation;
+    }
+
+    /**
+     * Add division
+     *
+     * @param \OFort\PrerentreeBundle\Entity\division $division
+     *
+     * @return filiere
+     */
+    public function addDivision(\OFort\PrerentreeBundle\Entity\division $division)
+    {
+        $this->divisions[] = $division;
+
+        return $this;
+    }
+
+    /**
+     * Remove division
+     *
+     * @param \OFort\PrerentreeBundle\Entity\division $division
+     */
+    public function removeDivision(\OFort\PrerentreeBundle\Entity\division $division)
+    {
+        $this->divisions->removeElement($division);
+    }
+
+    /**
+     * Get divisions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDivisions()
+    {
+        return $this->divisions;
     }
 }

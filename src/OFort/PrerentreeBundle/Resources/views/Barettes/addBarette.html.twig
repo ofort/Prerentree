@@ -1,0 +1,14 @@
+
+{% extends "OFortPrerentreeBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Ajouter une barette - 
+{% endblock %}
+
+{% block ofortprerentree_body %}
+
+  <h4>Ajouter une barette</h4>
+
+  {{ include("OFortPrerentreeBundle:Barettes:formBarette.html.twig") }}
+
+{% endblock %}

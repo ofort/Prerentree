@@ -8,7 +8,8 @@
 {% block ofortprerentree_body %}
 
   <h4>Ajouter un enseignement</h4>
-
+  <div class="bg-warning"><p> <strong>Attention</strong>, les durées pour les classes <em>dédoublées</em> et/ou <em>détriplées</em> ne seront pas prises en compte pour un enseignement de barette</p></div>
+ 
   {{ include("OFortPrerentreeBundle:Enseignements:formEnseignement.html.twig") }}
 
 {% endblock %}

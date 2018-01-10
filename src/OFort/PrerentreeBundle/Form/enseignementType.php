@@ -28,8 +28,11 @@ class enseignementType extends AbstractType
                         ->add('dureeDetriplee', NumberType::class,
                     array(
                         'label' => 'Pour une classe détriplée, quelle durée serait détriplée (TP)'))
-            ->add('commentaire',  TextareaType::class, array(
-                        'label' => 'Commentaire',
+            ->add('dureeCoanimee',  NumberType::class, array(
+                        'label' => 'Durée en co-animation',
+                        'required' => false))
+            ->add('nbDisciplinesCoanimation', NumberType::class, array(
+                        'label'=>'Nombre de disciplines assurant la co-animation',
                         'required' => false));
     }
     

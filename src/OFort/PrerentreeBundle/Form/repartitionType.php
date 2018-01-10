@@ -28,7 +28,8 @@ class repartitionType extends AbstractType
                 'class' => 'OFortPrerentreeBundle:discipline',
                 'choice_label' => 'intitule'))
             ->add('duree', NumberType::class, array(
-                'label' => 'Durée affectée'));
+                'label' => 'Durée affectée',
+                'scale' => 2 ));
     }
     
     /**

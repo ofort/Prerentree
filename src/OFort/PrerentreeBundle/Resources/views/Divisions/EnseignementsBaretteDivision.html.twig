@@ -1,0 +1,19 @@
+    <div Id="enseignementsDeBarette" class="row">
+      <h4>Barettes</h4>
+      <table class="table table-responsive table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Durée</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bar in division.barettes %}
+            <tr>
+              <td title='{{ bar.nom }}'>{{ bar.nomCourt }}</td>
+              <td>{{ bar.duree }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>

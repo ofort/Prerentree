@@ -3,15 +3,26 @@
     O. Fort
   Quoi:
     Implantation des maquettes
-    Implantation des enseignement
+    Implantation des enseignements
     début de l'implantation des divisions
   A faire:
     terminer les divisions :
-      finir le formulaire d'ajout d'une division
-      ne pas oublier le detriplement et le dédoublement
-      Ajouter une maquette à la division
-      (il peut y avoir plusieurs maquette qui s'ajoutent)
+      FAIT - finir le formulaire d'ajout d'une division
+      FAIT - ne pas oublier le detriplement et le dédoublement
+      FAIT - Ajouter une maquette à la division
+      Abandonné - (il peut y avoir plusieurs maquette qui s'ajoutent)
       Ajouter tout de suite les pages d'aide !!:
         route maquette/add/aide par exemple
-20/11/2017:
+28/12/2017:
+  Qui:
+    O. Fort
+  Quoi:
+    Implantation des enseignements en co-animation
+    Enregistrement des enseignement ajoutés à une maquette dans les associations enseignement-division
+  A faire:
+    Vérifier les enregistrements des enseignements ajoutés aux maquettes
+    Tenir des suppressions d'enseignements dans les associations
+    Ajouter les pages d'aide (cf 20/11/2017)
+
+
   
